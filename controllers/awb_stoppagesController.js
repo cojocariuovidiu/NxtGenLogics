@@ -1,4 +1,4 @@
-var awb-stoppagesModel = require('../models/awb-stoppagesModel.js');
+var awbStoppagesModel = require('../models/awb-stoppagesModel.js');
 
 /**
  * awb-stoppagesController.js
@@ -11,14 +11,14 @@ module.exports = {
      * awb-stoppagesController.list()
      */
     list: function (req, res) {
-        awb-stoppagesModel.find(function (err, awb-stoppagess) {
+        awbStoppagesModel.find(function (err, awb_stoppagess) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting awb-stoppages.',
                     error: err
                 });
             }
-            return res.json(awb-stoppagess);
+            return res.json(awb_stoppagess);
         });
     },
 
@@ -27,7 +27,7 @@ module.exports = {
      */
     show: function (req, res) {
         var id = req.params.id;
-        awb-stoppagesModel.findOne({_id: id}, function (err, awb-stoppages) {
+        awbStoppagesModel.findOne({_id: id}, function (err, awb_stoppages) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting awb-stoppages.',
@@ -39,7 +39,7 @@ module.exports = {
                     message: 'No such awb-stoppages'
                 });
             }
-            return res.json(awb-stoppages);
+            return res.json(awb_stoppages);
         });
     },
 
@@ -47,7 +47,7 @@ module.exports = {
      * awb-stoppagesController.create()
      */
     create: function (req, res) {
-        var awb-stoppages = new awb-stoppagesModel({
+        var awb_stoppages = new awb-stoppagesModel({
 			st_id : req.body.st_id,
 			awb_id : req.body.awb_id,
 			dest_id : req.body.dest_id,
@@ -56,14 +56,14 @@ module.exports = {
 
         });
 
-        awb-stoppages.save(function (err, awb-stoppages) {
+        awbStoppagesModel.save(function (err, awb_stoppages) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating awb-stoppages',
                     error: err
                 });
             }
-            return res.status(201).json(awb-stoppages);
+            return res.status(201).json(awb_stoppages);
         });
     },
 
@@ -72,26 +72,26 @@ module.exports = {
      */
     update: function (req, res) {
         var id = req.params.id;
-        awb-stoppagesModel.findOne({_id: id}, function (err, awb-stoppages) {
+        awbStoppagesModel.findOne({_id: id}, function (err, awb_stoppages) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting awb-stoppages',
                     error: err
                 });
             }
-            if (!awb-stoppages) {
+            if (!awb_stoppages) {
                 return res.status(404).json({
                     message: 'No such awb-stoppages'
                 });
             }
 
-            awb-stoppages.st_id = req.body.st_id ? req.body.st_id : awb-stoppages.st_id;
-			awb-stoppages.awb_id = req.body.awb_id ? req.body.awb_id : awb-stoppages.awb_id;
-			awb-stoppages.dest_id = req.body.dest_id ? req.body.dest_id : awb-stoppages.dest_id;
-			awb-stoppages.incoming_time = req.body.incoming_time ? req.body.incoming_time : awb-stoppages.incoming_time;
-			awb-stoppages.outgoing_time = req.body.outgoing_time ? req.body.outgoing_time : awb-stoppages.outgoing_time;
+            awb_stoppages.st_id = req.body.st_id ? req.body.st_id : awb_stoppages.st_id;
+			awb_stoppages.awb_id = req.body.awb_id ? req.body.awb_id : awb_stoppages.awb_id;
+			awb_stoppages.dest_id = req.body.dest_id ? req.body.dest_id : awb_stoppages.dest_id;
+			awb_stoppages.incoming_time = req.body.incoming_time ? req.body.incoming_time : awb_stoppages.incoming_time;
+			awb_stoppages.outgoing_time = req.body.outgoing_time ? req.body.outgoing_time : awb_stoppages.outgoing_time;
 			
-            awb-stoppages.save(function (err, awb-stoppages) {
+            awb_stoppages.save(function (err, awb_stoppages) {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating awb-stoppages.',
@@ -99,7 +99,7 @@ module.exports = {
                     });
                 }
 
-                return res.json(awb-stoppages);
+                return res.json(awb_stoppages);
             });
         });
     },
@@ -109,7 +109,7 @@ module.exports = {
      */
     remove: function (req, res) {
         var id = req.params.id;
-        awb-stoppagesModel.findByIdAndRemove(id, function (err, awb-stoppages) {
+        awbStoppagesModel.findByIdAndRemove(id, function (err, awb_stoppages) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the awb-stoppages.',

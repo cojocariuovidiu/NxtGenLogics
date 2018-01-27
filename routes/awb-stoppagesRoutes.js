@@ -1,30 +1,30 @@
 var express = require('express');
 var router = express.Router();
-var awb-stoppagesController = require('../controllers/awb-stoppagesController.js');
+var awbStoppagescOntroller = require('../controllers/awb_stoppagesController.js');
 
 /*
  * GET
  */
-router.get('/', awb-stoppagesController.list);
+router.get('/', awbStoppagescOntroller.list);
 
 /*
  * GET
  */
-router.get('/:id', awb-stoppagesController.show);
+router.get('/:id', awbStoppagescOntroller.show);
 
 /*
  * POST
  */
-router.post('/', awb-stoppagesController.create);
+router.post('/', awbStoppagescOntroller.create);
 
 /*
  * PUT
  */
-router.put('/:id', awb-stoppagesController.update);
+router.put('/:id', awbStoppagescOntroller.update);
 
 /*
  * DELETE
  */
-router.delete('/:id', awb-stoppagesController.remove);
+router.delete('/:id', awbStoppagescOntroller.remove);
 
 module.exports = router;

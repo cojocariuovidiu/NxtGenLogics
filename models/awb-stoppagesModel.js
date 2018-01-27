@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
-var awb-stoppagesSchema = new Schema({
+var awb_stoppagesSchema = new Schema({
 	'st_id' : String,
 	'awb_id' : {
 	 	type: Schema.Types.ObjectId,
@@ -12,4 +12,4 @@ var awb-stoppagesSchema = new Schema({
 	'outgoing_time' : Date
 });
 
-module.exports = mongoose.model('awb-stoppages', awb-stoppagesSchema);
+module.exports = mongoose.model('awb_stoppages', awb_stoppagesSchema);
