@@ -20,6 +20,7 @@ var bundleAwb = require('./routes/bundle-awbRoutes');
 var bundle = require('./routes/bundleRoutes');
 var cnote = require('./routes/cnoteRoutes');
 var reason = require('./routes/reasonsRoutes');
+var trains = require('./routes/trainsRoutes');
 
 var app = express();
 
@@ -57,6 +58,7 @@ app.use('/api/v1/bundle', bundle);
 app.use('/api/v1/bundleAwb', bundleAwb);
 app.use('/api/v1/cnote', cnote);
 app.use('/api/v1/reason', reason);
+app.use('/api/v1/trains', trains);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
