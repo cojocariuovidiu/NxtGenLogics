@@ -53,7 +53,7 @@ module.exports = {
 			manifest_time : req.body.manifest_time,
 			mode : req.body.mode,
 			bundle_no : req.body.bundle_no,
-			connected-ship : req.body.connected-ship
+			connected_ship : req.body.connected_ship
 
         });
 
@@ -91,7 +91,7 @@ module.exports = {
 			manifest.manifest_time = req.body.manifest_time ? req.body.manifest_time : manifest.manifest_time;
 			manifest.mode = req.body.mode ? req.body.mode : manifest.mode;
 			manifest.bundle_no = req.body.bundle_no ? req.body.bundle_no : manifest.bundle_no;
-			manifest.connected-ship = req.body.connected-ship ? req.body.connected-ship : manifest.connected-ship;
+			manifest.connected_ship = req.body.connected_ship ? req.body.connected_ship : manifest.connected_ship;
 			
             manifest.save(function (err, manifest) {
                 if (err) {

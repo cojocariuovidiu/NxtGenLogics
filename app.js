@@ -20,6 +20,15 @@ var bundleAwb = require('./routes/bundle-awbRoutes');
 var bundle = require('./routes/bundleRoutes');
 var cnote = require('./routes/cnoteRoutes');
 var reason = require('./routes/reasonsRoutes');
+var coloader = require('./routes/coLoaderRoutes');
+var hub = require('./routes/hubRoutes');
+var manifest = require('./routes/manifestRoutes');
+var mode = require('./routes/modeRoutes');
+var movement = require('./routes/movementsRoutes');
+var purchase = require('./routes/purchaseOrderRoutes');
+var staffs = require('./routes/staffsRoutes');
+var trains = require('./routes/trainsRoutes');
+var zone = require('./routes/zoneRoutes');
 
 var app = express();
 
@@ -57,6 +66,15 @@ app.use('/api/v1/bundle', bundle);
 app.use('/api/v1/bundleAwb', bundleAwb);
 app.use('/api/v1/cnote', cnote);
 app.use('/api/v1/reason', reason);
+app.use('/api/v1/hub', hub);
+app.use('/api/v1/trains', trains);
+app.use('/api/v1/staffs', staffs);
+app.use('/api/v1/purchase', purchase);
+app.use('/api/v1/movement', movement);
+app.use('/api/v1/mode', mode);
+app.use('/api/v1/manifest', manifest);
+app.use('/api/v1/coloader', coloader);
+app.use('/api/v1/zone', zone);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

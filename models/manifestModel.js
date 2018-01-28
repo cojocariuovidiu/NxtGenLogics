@@ -10,7 +10,7 @@ var manifestSchema = new Schema({
 	 	ref: 'mode'
 	},
 	'bundle_no' : String,
-	'connected-ship' : String
+	'connected_ship' : String
 });
 
 module.exports = mongoose.model('manifest', manifestSchema);
