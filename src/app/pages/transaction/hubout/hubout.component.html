@@ -1,0 +1,36 @@
+<card>
+  <form [formGroup]="form" (submit)="onHuboutSubmit()">
+    <div class="row">
+      <div class="col-md-6">
+        <md-select [(ngModel)]="hub" #newhub [formControl]="form.controls['hub']" (ngModelChange)="awbBundleChange(this.value)" placeholder="Hub">
+          <md-option *ngFor="let hub of hubss" [value]="hub.hubcode">
+            {{ hub.hname }}
+          </md-option>
+        </md-select>
+                        
+        </div>
+               
+              <div class="col-md-6">
+                <md-select [(ngModel)]="awbno" [formControl]="form.controls['awbno']" placeholder="Awbno">
+                  <md-option *ngFor="let awb of awbs" [value]="awb">
+                    {{ awb }}
+                  </md-option>
+                </md-select>
+                                
+                </div>
+                <div class="col-md-12">&nbsp;</div>
+            
+              <div class="col-md-12">
+                <md-select [(ngModel)]="bundleid" [formControl]="form.controls['bundleid']" placeholder="Bundleid">
+                  <md-option *ngFor="let bundleid of bundless" [value]="bundleid">
+                    {{ bundleid }}
+                  </md-option>
+                </md-select>
+                                
+                </div>
+     
+              <div class="col-md-12">&nbsp;</div>
+                    </div>
+    <button md-raised-button color="accent" type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</card>

@@ -1,0 +1,56 @@
+<card>
+  <form [formGroup]="form" (submit)="onAddtrainSubmit()">
+    <div class="row">
+        <div class="col-md-4">
+            <md-input-container>
+              <input mdInput placeholder="Train Number" name="trainno" [(ngModel)]="trainno" [formControl]="form.controls['trainno']">
+              <small *ngIf="form.controls['trainno'].hasError('required') && form.controls['trainno'].touched" class="form-message text-danger">You must enter a number.</small>
+              <small *ngIf="form.controls['trainno'].errors?.range && form.controls['trainno'].touched" class="form-message text-danger">Number should be between 4 and 5.</small>
+            </md-input-container>
+          </div>
+      <div class="col-md-4">
+        <md-input-container>
+          <input mdInput placeholder="Source Name" name="sname" [(ngModel)]="sname" [formControl]="form.controls['sname']">
+          <small *ngIf="form.controls['sname'].hasError('required') && form.controls['sname'].touched" class="form-message text-danger">You must include a first name.</small>
+          <small *ngIf="form.controls['sname'].hasError('minlength') && form.controls['sname'].touched" class="form-message text-danger">Your first name must be at least 5 characters long.</small>
+          <small *ngIf="form.controls['sname'].hasError('maxlength') && form.controls['sname'].touched" class="form-message text-danger">Your first name cannot exceed 10 characters.</small>
+        </md-input-container>
+      </div>
+      <div class="col-md-4">
+          <md-input-container>
+            <input mdInput placeholder="Destination Name" name="dname" [(ngModel)]="dname" [formControl]="form.controls['dname']">
+            <small *ngIf="form.controls['dname'].hasError('required') && form.controls['dname'].touched" class="form-message text-danger">You must include a first name.</small>
+            <small *ngIf="form.controls['dname'].hasError('minlength') && form.controls['dname'].touched" class="form-message text-danger">Your first name must be at least 5 characters long.</small>
+            <small *ngIf="form.controls['dname'].hasError('maxlength') && form.controls['dname'].touched" class="form-message text-danger">Your first name cannot exceed 10 characters.</small>
+          </md-input-container>
+        </div>
+        <div class="col-md-4">
+            <md-input-container>
+              <input mdInput placeholder="Train Name" name="tname" [(ngModel)]="tname" [formControl]="form.controls['tname']">
+              <small *ngIf="form.controls['tname'].hasError('required') && form.controls['tname'].touched" class="form-message text-danger">You must include a first name.</small>
+              <small *ngIf="form.controls['tname'].hasError('minlength') && form.controls['tname'].touched" class="form-message text-danger">Your first name must be at least 5 characters long.</small>
+              <small *ngIf="form.controls['tname'].hasError('maxlength') && form.controls['tname'].touched" class="form-message text-danger">Your first name cannot exceed 10 characters.</small>
+            </md-input-container>
+          </div>
+          <div class="col-md-4">
+              <md-input-container>
+                <input mdInput placeholder="Departure Time" name="dtime" [(ngModel)]="dtime" [formControl]="form.controls['dtime']">
+                <small *ngIf="form.controls['dtime'].hasError('required') && form.controls['dtime'].touched" class="form-message text-danger">You must include a first name.</small>
+                <small *ngIf="form.controls['dtime'].hasError('minlength') && form.controls['dtime'].touched" class="form-message text-danger">Your first name must be at least 5 characters long.</small>
+                <small *ngIf="form.controls['dtime'].hasError('maxlength') && form.controls['dtime'].touched" class="form-message text-danger">Your first name cannot exceed 10 characters.</small>
+              </md-input-container>
+            </div>
+            <div class="col-md-4">
+                <md-input-container>
+                  <input mdInput placeholder="Arrival Time" name="atime" [(ngModel)]="atime" [formControl]="form.controls['atime']">
+                  <small *ngIf="form.controls['atime'].hasError('required') && form.controls['atime'].touched" class="form-message text-danger">You must include a first name.</small>
+                  <small *ngIf="form.controls['atime'].hasError('minlength') && form.controls['atime'].touched" class="form-message text-danger">Your first name must be at least 5 characters long.</small>
+                  <small *ngIf="form.controls['atime'].hasError('maxlength') && form.controls['atime'].touched" class="form-message text-danger">Your first name cannot exceed 10 characters.</small>
+                </md-input-container>
+              </div>
+      
+            </div>
+      
+    <button md-raised-button color="accent" type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</card>

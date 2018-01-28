@@ -1,0 +1,44 @@
+<card title="Create Destination">
+    <div class="row">
+      <div class="col-md-6">
+        <md-input-container class="md-icon-left">
+          <md-icon>perm_identity</md-icon>
+          <input mdInput placeholder="Destination Code" value="">
+        </md-input-container>
+      </div>
+      <div class="col-md-6">
+        <md-input-container class="md-icon-left">
+          <md-icon>people_outline</md-icon>
+          <input mdInput placeholder="Destination Name" value="">
+        </md-input-container>
+      </div>
+    </div>
+  
+
+  
+    <div class="row">
+      <div class="col-md-6">
+        <md-input-container class="mb-0">
+          <input mdInput placeholder="State" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+        </md-input-container>
+  
+        <md-autocomplete #auto="mdAutocomplete">
+          <md-option *ngFor="let state of filteredStates | async" [value]="state">
+            {{ state }}
+          </md-option>
+        </md-autocomplete>
+      </div>
+      <div class="col-md-6">
+        <md-input-container>
+          <input mdInput placeholder="Transit Days" value="">
+        </md-input-container>
+      </div>
+      
+    </div>
+    
+     
+  
+    
+  </card>
+  
+  

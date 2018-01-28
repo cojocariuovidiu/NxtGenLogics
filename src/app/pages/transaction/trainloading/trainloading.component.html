@@ -1,0 +1,105 @@
+<card>
+  <form [formGroup]="form" (submit)="ontrainLoadingSubmit()">
+    <div class="row">
+        
+          <div class="col-md-4">
+            <md-input-container class="mb-0">
+            <input mdInput #newBundle (keyup.enter)="addBundle(newBundle.value); newBundle.value=''" placeholder="Bundles" [formControl]="bundleCtrl"
+            (blur)="addBundle(newBundle.value); newBundle.value='' " [mdAutocomplete]="auto1">
+            <button mdSuffix (click)="addBundle(newBundle.value)">Add</button>
+            
+          </md-input-container>
+            <md-autocomplete #auto1="mdAutocomplete">
+              <md-option *ngFor="let bundle of filteredBundles | async" [value]="bundle">
+                {{ bundle }}
+              </md-option>
+            </md-autocomplete>
+          
+          <ul><li *ngFor="let SelectedBundle of SelectedBundles">{{SelectedBundle}}</li></ul>            
+            </div>
+
+          <div class="col-md-4">
+            <md-input-container>
+              <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" name="bookdate" [formControl]="form.controls['bookdate']" >
+              <button mdSuffix [mdDatepickerToggle]="picker"></button>
+              </md-input-container>
+            <md-datepicker #picker></md-datepicker>
+          </div>
+          <div class="col-md-4">
+            <md-input-container>
+              <input mdInput placeholder="Train no" [(ngModel)]="trainno" name="trainno" [formControl]="form.controls['trainno']">
+              <small *ngIf="form.controls['trainno'].hasError('required') && form.controls['trainno'].touched" class="form-message text-danger">You must include a Origin.</small>
+              </md-input-container>
+          </div>
+          
+          <div class="col-md-4">
+            <md-input-container>
+              <input mdInput placeholder="Load Origin" [(ngModel)]="origin" name="origin" [formControl]="form.controls['origin']">
+              <small *ngIf="form.controls['origin'].hasError('required') && form.controls['origin'].touched" class="form-message text-danger">You must include a Origin.</small>
+              </md-input-container>
+          </div>
+          <div class="col-md-4">
+              <md-input-container>
+                <input mdInput placeholder="Load Destination" name="destination" [(ngModel)]="destination" [formControl]="form.controls['destination']">
+                <small *ngIf="form.controls['destination'].hasError('required') && form.controls['destination'].touched" class="form-message text-danger">You must include a Destination.</small>
+                </md-input-container>
+            </div>
+            <div class="mb-4">
+              <label>Rake</label>
+              <md-radio-group [formControl]="form.controls['rake']" [(ngModel)]="rake">
+                <md-radio-button value="Front">Front</md-radio-button>
+                <md-radio-button value="Rear">Rear</md-radio-button>
+                
+                <small *ngIf="!form.controls['rake'].valid && form.controls['rake'].touched" class="form-message text-danger">You must select a Mode.</small>
+              </md-radio-group>
+            </div>
+            <div class="col-md-4">
+                <md-checkbox class="example-margin" [formControl]="form.controls['leased']" [(ngModel)]="leased">Leased</md-checkbox>
+              
+            </div>
+            
+            <div class="col-md-4">
+              <md-input-container>
+                <input mdInput placeholder="Train Booking Amount" name="trainbookamt" [(ngModel)]="trainbookamt" [formControl]="form.controls['trainbookamt']">
+                <small *ngIf="form.controls['trainbookamt'].hasError('required') && form.controls['trainbookamt'].touched" class="form-message text-danger">Train booking Amount</small>
+                </md-input-container>
+            </div>
+            <div class="col-md-4">
+              <md-input-container>
+                <input mdInput placeholder="Train Booking Number" name="trainbookno" [(ngModel)]="trainbookno" [formControl]="form.controls['trainbookno']">
+                <small *ngIf="form.controls['trainbookno'].hasError('required') && form.controls['trainbookno'].touched" class="form-message text-danger">Train booking number.</small>
+                </md-input-container>
+            </div>
+            
+          
+
+           </div>
+    <button md-raised-button color="accent" type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</card>
+<card>
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-default">
+        <tr>
+          <th>#</th>
+          <th>Train No</th>
+          <th>Date</th>
+          <th>Origin</th>
+          <th>Destination{{trainLoadings}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let loading of trainLoadings; let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{loading.trainno}}</td>
+          <td>{{loading.bookdate}}</td>
+          <td>{{loading.origin}}</td>
+          <td>{{loading.destination}}</td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+  </div>
+</card>

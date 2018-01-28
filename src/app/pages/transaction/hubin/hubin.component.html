@@ -1,0 +1,67 @@
+<card>
+  <form [formGroup]="form" (submit)="onHubinSubmit()">
+    <div class="row">
+        
+          <!--div class="col-md-4">
+            <md-input-container class="mb-0">
+            <input mdInput #newAwb (keyup.enter)="addBundle(newBundle.value); newBundle.value=''" placeholder="bundles" [formControl]="bundleCtrl"
+            (blur)="addBundle(newBundle.value); newBundle.value='' " [mdAutocomplete]="auto">
+            <button mdSuffix (click)="addBundle(newBundle.value)">Add</button>
+            
+          </md-input-container>
+            <md-autocomplete #auto="mdAutocomplete">
+              <md-option *ngFor="let bundle of filteredBundles | async" [value]="bundle">
+                {{ bundle }}
+              </md-option>
+            </md-autocomplete>
+          
+          <ul><li *ngFor="let SelectedBundle of SelectedBundles">{{SelectedBundle}}</li></ul>            
+            </div>
+            <div class="col-md-4">
+              <md-input-container class="mb-0">
+              <input mdInput #newAwb (keyup.enter)="addAwb(newAwb.value); newAwb.value=''" placeholder="Awbs" [formControl]="awbCtrl"
+              (blur)="addAwb(newAwb.value); newAwb.value='' " [mdAutocomplete]="auto1">
+              <button mdSuffix (click)="addAwb(newAwb.value)">Add</button>
+              
+            </md-input-container>
+              <md-autocomplete #auto1="mdAutocomplete">
+                <md-option *ngFor="let awb of filteredAwbs | async" [value]="awb">
+                  {{ awb }}
+                </md-option>
+              </md-autocomplete>
+            
+         
+            <ul><li *ngFor="let SelectedAwb of SelectedAwbs">{{SelectedAwb}}</li></ul>
+            <input type="hidden" value="{{SelectedAwbs}}" [(ngModel)]="awbss" [formControl]="form.controls['awbss']"  name="awbss">            
+              </div-->
+              <div class="col-md-12">
+                <md-select [(ngModel)]="bundleid" [formControl]="form.controls['bundleid']"  placeholder="Bundleid">
+                  <md-option *ngFor="let bundleid of bundless" [value]="bundleid">
+                    {{ bundleid }}
+                  </md-option>
+                </md-select>
+                                
+                </div>
+                <div class="col-md-12">&nbsp;</div>
+              <div class="col-md-6">
+                <md-select [(ngModel)]="awbno" [formControl]="form.controls['awbno']" placeholder="Awbno">
+                  <md-option *ngFor="let awb of awbs" [value]="awb">
+                    {{ awb }}
+                  </md-option>
+                </md-select>
+                                
+                </div>
+               
+            <div class="col-md-6">
+              <md-select [(ngModel)]="hub" [formControl]="form.controls['hub']" placeholder="Hub">
+                <md-option *ngFor="let hub of hubss" [value]="hub.hubcode">
+                  {{ hub.hname }}
+                </md-option>
+              </md-select>
+                              
+              </div>
+              <div class="col-md-12">&nbsp;</div>
+                    </div>
+    <button md-raised-button color="accent" type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</card>

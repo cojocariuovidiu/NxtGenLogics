@@ -1,0 +1,57 @@
+<card>
+  <form [formGroup]="form" (submit)="onBookingSubmit()">
+    <div class="row">
+        <div class="col-md-4">
+            <md-input-container>
+              <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" name="bookdate" [formControl]="form.controls['bookdate']" >
+              <button mdSuffix [mdDatepickerToggle]="picker"></button>
+              </md-input-container>
+            <md-datepicker #picker></md-datepicker>
+          </div>
+          <div class="col-md-4">
+            <md-input-container>
+              <input mdInput placeholder="Train no" [(ngModel)]="trainno" name="trainno" [formControl]="form.controls['trainno']">
+              <small *ngIf="form.controls['trainno'].hasError('required') && form.controls['trainno'].touched" class="form-message text-danger">You must include a Origin.</small>
+              </md-input-container>
+          </div>
+          <div class="mb-4">
+            <label>Rake</label>
+            <md-radio-group [formControl]="form.controls['rake']">
+              <md-radio-button value="Front">Front</md-radio-button>
+              <md-radio-button value="Rear">Rear</md-radio-button>
+              
+              <small *ngIf="!form.controls['rake'].valid && form.controls['rake'].touched" class="form-message text-danger">You must select a Mode.</small>
+            </md-radio-group>
+          </div>
+          <div class="col-md-4">
+            <md-input-container>
+              <input mdInput placeholder="Load Origin" [(ngModel)]="origin" name="origin" [formControl]="form.controls['Origin']">
+              <small *ngIf="form.controls['Origin'].hasError('required') && form.controls['Origin'].touched" class="form-message text-danger">You must include a Origin.</small>
+              </md-input-container>
+          </div>
+          <div class="col-md-4">
+              <md-input-container>
+                <input mdInput placeholder="Load Destination" name="destination" [(ngModel)]="destination" [formControl]="form.controls['Destination']">
+                <small *ngIf="form.controls['Destination'].hasError('required') && form.controls['Destination'].touched" class="form-message text-danger">You must include a Destination.</small>
+                </md-input-container>
+            </div>
+            <div class="col-md-4">
+              <md-input-container class="mb-0">
+              <input mdInput #newAwb (keyup.enter)="addAwb(newAwb.value); newAwb.value=''" [formControl]="awbCtrl"
+              (blur)="addAwb(newAwb.value); newAwb.value='' " [mdAutocomplete]="auto1">
+              <button mdSuffix (click)="addAwb(newAwb.value)">Add</button>
+              
+            </md-input-container>
+              <md-autocomplete #auto1="mdAutocomplete">
+                <md-option *ngFor="let awb of filteredAwbs | async" [value]="awb">
+                  {{ awb }}
+                </md-option>
+              </md-autocomplete>
+            
+            <ul><li *ngFor="let SelectedAwb of SelectedAwbs">{{SelectedAwb}}</li></ul>            
+              </div>
+
+           </div>
+    <button md-raised-button color="accent" type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</card>

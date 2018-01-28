@@ -1,0 +1,26 @@
+<card>
+  <form [formGroup]="form" (submit)="onBookingSubmit()">
+    <div class="row">
+        
+          <div class="col-md-4">
+            <md-input-container class="mb-0">
+            <input mdInput #newAwb (keyup.enter)="addAwb(newAwb.value); newAwb.value=''" placeholder="Awbs" [(ngModel)]="awbno"  name="awbno" [formControl]="awbCtrl"
+            (blur)="addAwb(newAwb.value); newAwb.value='' " [mdAutocomplete]="auto1">
+            
+            
+          </md-input-container>
+            <md-autocomplete #auto1="mdAutocomplete">
+              <md-option *ngFor="let awbno of filteredAwbs | async" [value]="awbno">
+                {{ awbno }}
+              </md-option>
+            </md-autocomplete>
+          
+       
+          <ul><li *ngFor="let SelectedAwb of SelectedAwbs">{{SelectedAwb}}</li></ul>            
+            </div>
+            <div class="col-md-12">&nbsp;</div>
+                    
+           </div>
+    <button md-raised-button color="accent" type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</card>

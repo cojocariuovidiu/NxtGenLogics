@@ -1,0 +1,39 @@
+<card>
+  <form [formGroup]="form" (submit)="onBundleSubmit()">
+    <div class="row">
+        
+          <div class="col-md-4">
+            <md-input-container class="mb-0">
+            <input mdInput #newAwb (keyup.enter)="addAwb(newAwb.value); newAwb.value=''" placeholder="Awbs" [formControl]="awbCtrl"
+            (blur)="addAwb(newAwb.value); newAwb.value='' " [mdAutocomplete]="auto1">
+            <button mdSuffix (click)="addAwb(newAwb.value)">Add</button>
+            
+          </md-input-container>
+            <md-autocomplete #auto1="mdAutocomplete">
+              <md-option *ngFor="let awb of filteredAwbs | async" [value]="awb">
+                {{ awb }}
+              </md-option>
+            </md-autocomplete>
+          
+       
+          <ul><li *ngFor="let SelectedAwb of SelectedAwbs">{{SelectedAwb}}</li></ul>
+          <input type="hidden" value="{{SelectedAwbs}}" [(ngModel)]="awbss" [formControl]="form.controls['awbss']"  name="awbss">            
+            </div>
+
+          <div class="col-md-4">
+            <md-input-container>
+              <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" name="bookdate" [formControl]="form.controls['bookdate']" >
+              <button mdSuffix [mdDatepickerToggle]="picker"></button>
+              </md-input-container>
+            <md-datepicker #picker></md-datepicker>
+          </div>
+          <div class="col-md-4">
+            <md-input-container class="mb-0">
+              <input mdInput placeholder="Hub" [(ngModel)]="hub"  name="hub"  [formControl]="form.controls['hub']">
+            </md-input-container>
+      
+          </div>
+           </div>
+    <button md-raised-button color="accent" type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</card>
