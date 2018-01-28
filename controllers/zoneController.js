@@ -1,4 +1,4 @@
-var zoneModel = require('../models/zoneModel.js');
+const zoneModel = require('../models/zoneModel.js');
 
 /**
  * zoneController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * zoneController.list()
      */
-    list: function (req, res) {
-        zoneModel.find(function (err, zones) {
+    list:(req, res)=> {
+        zoneModel.find((err, zones)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting zone.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * zoneController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        zoneModel.findOne({_id: id}, function (err, zone) {
+    show: (req, res)=> {
+        let id = req.params.id;
+        zoneModel.findOne({_id: id},(err, zone)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting zone.',
@@ -46,15 +46,15 @@ module.exports = {
     /**
      * zoneController.create()
      */
-    create: function (req, res) {
-        var zone = new zoneModel({
+    create:(req, res)=> {
+        let zone = new zoneModel({
 			zone_id : req.body.zone_id,
 			zone_name : req.body.zone_name,
 			description : req.body.description
 
         });
 
-        zone.save(function (err, zone) {
+        zone.save((err, zone)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating zone',
@@ -68,9 +68,9 @@ module.exports = {
     /**
      * zoneController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        zoneModel.findOne({_id: id}, function (err, zone) {
+    update:(req, res)=> {
+        let id = req.params.id;
+        zoneModel.findOne({_id: id},(err, zone)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting zone',
@@ -87,7 +87,7 @@ module.exports = {
 			zone.zone_name = req.body.zone_name ? req.body.zone_name : zone.zone_name;
 			zone.description = req.body.description ? req.body.description : zone.description;
 			
-            zone.save(function (err, zone) {
+            zone.save((err, zone)=> {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating zone.',
@@ -103,9 +103,9 @@ module.exports = {
     /**
      * zoneController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        zoneModel.findByIdAndRemove(id, function (err, zone) {
+    remove:(req, res)=> {
+        let id = req.params.id;
+        zoneModel.findByIdAndRemove(id, (err, zone)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the zone.',

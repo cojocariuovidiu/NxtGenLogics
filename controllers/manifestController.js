@@ -1,4 +1,4 @@
-var manifestModel = require('../models/manifestModel.js');
+const manifestModel = require('../models/manifestModel.js');
 
 /**
  * manifestController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * manifestController.list()
      */
-    list: function (req, res) {
-        manifestModel.find(function (err, manifests) {
+    list:  (req, res)=> {
+        manifestModel.find( (err, manifests)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting manifest.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * manifestController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        manifestModel.findOne({_id: id}, function (err, manifest) {
+    show: (req, res)=> {
+        let id = req.params.id;
+        manifestModel.findOne({_id: id}, (err, manifest)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting manifest.',
@@ -46,8 +46,8 @@ module.exports = {
     /**
      * manifestController.create()
      */
-    create: function (req, res) {
-        var manifest = new manifestModel({
+    create:(req, res)=> {
+        let manifest = new manifestModel({
 			bundle_ids : req.body.bundle_ids,
 			manifest_date : req.body.manifest_date,
 			manifest_time : req.body.manifest_time,
@@ -57,7 +57,7 @@ module.exports = {
 
         });
 
-        manifest.save(function (err, manifest) {
+        manifest.save( (err, manifest)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating manifest',
@@ -71,9 +71,9 @@ module.exports = {
     /**
      * manifestController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        manifestModel.findOne({_id: id}, function (err, manifest) {
+    update:(req, res)=> {
+        let id = req.params.id;
+        manifestModel.findOne({_id: id},(err, manifest)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting manifest',
@@ -93,7 +93,7 @@ module.exports = {
 			manifest.bundle_no = req.body.bundle_no ? req.body.bundle_no : manifest.bundle_no;
 			manifest.connected_ship = req.body.connected_ship ? req.body.connected_ship : manifest.connected_ship;
 			
-            manifest.save(function (err, manifest) {
+            manifest.save( (err, manifest)=> {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating manifest.',
@@ -109,9 +109,9 @@ module.exports = {
     /**
      * manifestController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        manifestModel.findByIdAndRemove(id, function (err, manifest) {
+    remove:  (req, res)=> {
+        let id = req.params.id;
+        manifestModel.findByIdAndRemove(id, (err, manifest)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the manifest.',

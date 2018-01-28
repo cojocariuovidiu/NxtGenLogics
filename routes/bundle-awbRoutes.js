@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var bundleAwbController = require('../controllers/bundle_awbController.js');
+const express = require('express');
+const router = express.Router();
+const bundleAwbController = require('../controllers/bundle_awbController.js');
 
 /*
  * GET

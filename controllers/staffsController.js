@@ -1,4 +1,4 @@
-var staffsModel = require('../models/staffsModel.js');
+const staffsModel = require('../models/staffsModel.js');
 
 /**
  * staffsController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * staffsController.list()
      */
-    list: function (req, res) {
-        staffsModel.find(function (err, staffss) {
+    list:(req, res)=> {
+        staffsModel.find((err, staffss)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting staffs.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * staffsController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        staffsModel.findOne({_id: id}, function (err, staffs) {
+    show: (req, res)=> {
+        let id = req.params.id;
+        staffsModel.findOne({_id: id},(err, staffs)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting staffs.',
@@ -46,8 +46,8 @@ module.exports = {
     /**
      * staffsController.create()
      */
-    create: function (req, res) {
-        var staffs = new staffsModel({
+    create: (req, res)=> {
+        let staffs = new staffsModel({
 			staff_id : req.body.staff_id,
 			staff_name : req.body.staff_name,
 			address : req.body.address,
@@ -60,7 +60,7 @@ module.exports = {
 
         });
 
-        staffs.save(function (err, staffs) {
+        staffs.save( (err, staffs)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating staffs',
@@ -74,9 +74,9 @@ module.exports = {
     /**
      * staffsController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        staffsModel.findOne({_id: id}, function (err, staffs) {
+    update: (req, res)=> {
+        let id = req.params.id;
+        staffsModel.findOne({_id: id},(err, staffs)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting staffs',
@@ -99,7 +99,7 @@ module.exports = {
 			staffs.perm_address = req.body.perm_address ? req.body.perm_address : staffs.perm_address;
 			staffs.alt_phone = req.body.alt_phone ? req.body.alt_phone : staffs.alt_phone;
 			
-            staffs.save(function (err, staffs) {
+            staffs.save((err, staffs)=> {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating staffs.',
@@ -115,9 +115,9 @@ module.exports = {
     /**
      * staffsController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        staffsModel.findByIdAndRemove(id, function (err, staffs) {
+    remove:(req, res)=> {
+        let id = req.params.id;
+        staffsModel.findByIdAndRemove(id, (err, staffs)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the staffs.',

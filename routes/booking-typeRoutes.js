@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var bookingTypeController = require('../controllers/booking_typeController.js');
+const express = require('express');
+const router = express.Router();
+const bookingTypeController = require('../controllers/booking_typeController.js');
 
 /*
  * GET

@@ -1,4 +1,4 @@
-var reasonsModel = require('../models/reasonsModel.js');
+const reasonsModel = require('../models/reasonsModel.js');
 
 /**
  * reasonsController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * reasonsController.list()
      */
-    list: function (req, res) {
-        reasonsModel.find(function (err, reasonss) {
+    list:(req, res)=> {
+        reasonsModel.find( (err, reasonss)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting reasons.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * reasonsController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        reasonsModel.findOne({_id: id}, function (err, reasons) {
+    show:(req, res)=> {
+        let id = req.params.id;
+        reasonsModel.findOne({_id: id}, (err, reasons)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting reasons.',
@@ -46,14 +46,14 @@ module.exports = {
     /**
      * reasonsController.create()
      */
-    create: function (req, res) {
-        var reasons = new reasonsModel({
+    create:(req, res)=> {
+        let reasons = new reasonsModel({
 			reason_id : req.body.reason_id,
 			reason_text : req.body.reason_text
 
         });
 
-        reasons.save(function (err, reasons) {
+        reasons.save((err, reasons)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating reasons',
@@ -67,9 +67,9 @@ module.exports = {
     /**
      * reasonsController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        reasonsModel.findOne({_id: id}, function (err, reasons) {
+    update: (req, res)=> {
+        let id = req.params.id;
+        reasonsModel.findOne({_id: id},(err, reasons)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting reasons',
@@ -85,7 +85,7 @@ module.exports = {
             reasons.reason_id = req.body.reason_id ? req.body.reason_id : reasons.reason_id;
 			reasons.reason_text = req.body.reason_text ? req.body.reason_text : reasons.reason_text;
 			
-            reasons.save(function (err, reasons) {
+            reasons.save((err, reasons)=> {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating reasons.',
@@ -101,9 +101,9 @@ module.exports = {
     /**
      * reasonsController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        reasonsModel.findByIdAndRemove(id, function (err, reasons) {
+    remove:(req, res)=> {
+        let id = req.params.id;
+        reasonsModel.findByIdAndRemove(id, (err, reasons)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the reasons.',

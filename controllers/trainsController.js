@@ -1,4 +1,4 @@
-var trainsModel = require('../models/trainsModel.js');
+const trainsModel = require('../models/trainsModel.js');
 
 /**
  * trainsController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * trainsController.list()
      */
-    list: function (req, res) {
-        trainsModel.find(function (err, trainss) {
+    list:(req, res)=> {
+        trainsModel.find( (err, trainss)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting trains.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * trainsController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        trainsModel.findOne({_id: id}, function (err, trains) {
+    show:(req, res)=> {
+        let id = req.params.id;
+        trainsModel.findOne({_id: id}, (err, trains)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting trains.',
@@ -46,8 +46,8 @@ module.exports = {
     /**
      * trainsController.create()
      */
-    create: function (req, res) {
-        var trains = new trainsModel({
+    create: (req, res)=> {
+        let trains = new trainsModel({
 			train_code : req.body.train_code,
 			train_source : req.body.train_source,
 			train_destination : req.body.train_destination,
@@ -57,7 +57,7 @@ module.exports = {
 
         });
 
-        trains.save(function (err, trains) {
+        trains.save((err, trains)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating trains',
@@ -71,9 +71,9 @@ module.exports = {
     /**
      * trainsController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        trainsModel.findOne({_id: id}, function (err, trains) {
+    update: (req, res)=> {
+        let id = req.params.id;
+        trainsModel.findOne({_id: id}, (err, trains)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting trains',
@@ -93,7 +93,7 @@ module.exports = {
 			trains.depat_atsource = req.body.depat_atsource ? req.body.depat_atsource : trains.depat_atsource;
 			trains.arrival_atdest = req.body.arrival_atdest ? req.body.arrival_atdest : trains.arrival_atdest;
 			
-            trains.save(function (err, trains) {
+            trains.save((err, trains)=> {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating trains.',
@@ -109,9 +109,9 @@ module.exports = {
     /**
      * trainsController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        trainsModel.findByIdAndRemove(id, function (err, trains) {
+    remove: (req, res)=> {
+        let id = req.params.id;
+        trainsModel.findByIdAndRemove(id,(err, trains)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the trains.',

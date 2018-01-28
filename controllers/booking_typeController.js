@@ -1,4 +1,4 @@
-var bookingTypeModel = require('../models/booking-typeModel.js');
+const bookingTypeModel = require('../models/booking-typeModel.js');
 
 /**
  * booking-typeController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * booking-typeController.list()
      */
-    list: function (req, res) {
-        bookingTypeModel.find(function (err, booking_types) {
+    list:  (req, res) =>{
+        bookingTypeModel.find( (err, booking_types) => {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting booking-type.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * booking-typeController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        bookingTypeModel.findOne({_id: id}, function (err, booking_type) {
+    show:  (req, res) => {
+        let id = req.params.id;
+        bookingTypeModel.findOne({_id: id},  (err, booking_type) => {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting booking-type.',
@@ -46,14 +46,14 @@ module.exports = {
     /**
      * booking-typeController.create()
      */
-    create: function (req, res) {
-        var booking_type = new booking-typeModel({
+    create:  (req, res) => {
+        let booking_type = new booking-typeModel({
 			type_id : req.body.type_id,
 			type_text : req.body.type_text
 
         });
 
-        bookingTypeModel.save(function (err, booking_type) {
+        bookingTypeModel.save( (err, booking_type) => {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating booking-type',
@@ -67,9 +67,9 @@ module.exports = {
     /**
      * booking-typeController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        bookingTypeModel.findOne({_id: id}, function (err, booking_type) {
+    update:  (req, res) =>{
+        let id = req.params.id;
+        bookingTypeModel.findOne({_id: id},  (err, booking_type)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting booking-type',
@@ -85,7 +85,7 @@ module.exports = {
             booking_type.type_id = req.body.type_id ? req.body.type_id : booking_type.type_id;
 			booking_type.type_text = req.body.type_text ? req.body.type_text : booking_type.type_text;
 			
-            bookingTypeModel.save(function (err, booking_type) {
+            bookingTypeModel.save( (err, booking_type) => {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating booking-type.',
@@ -101,9 +101,9 @@ module.exports = {
     /**
      * booking-typeController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        bookingTypeModel.findByIdAndRemove(id, function (err, booking_type) {
+    remove:  (req, res)=> {
+        let id = req.params.id;
+        bookingTypeModel.findByIdAndRemove(id,  (err, booking_type) => {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the booking-type.',

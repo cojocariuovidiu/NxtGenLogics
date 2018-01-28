@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var purchaseOrderController = require('../controllers/purchaseOrderController.js');
+const express = require('express');
+const router = express.Router();
+const purchaseOrderController = require('../controllers/purchaseOrderController.js');
 
 /*
  * GET

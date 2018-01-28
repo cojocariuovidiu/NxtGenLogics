@@ -1,4 +1,4 @@
-var branchesModel = require('../models/branchesModel.js');
+const branchesModel = require('../models/branchesModel.js');
 
 /**
  * branchesController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * branchesController.list()
      */
-    list: function (req, res) {
-        branchesModel.find(function (err, branchess) {
+    list:(req, res)=> {
+        branchesModel.find((err, branchess) => {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting branches.',
@@ -25,9 +25,8 @@ module.exports = {
     /**
      * branchesController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        branchesModel.findOne({_id: id}, function (err, branches) {
+    show: (req, res)=> {
+        let id = req.params.id; branchesModel.findOne({_id: id}, (err, branches) => {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting branches.',
@@ -46,9 +45,8 @@ module.exports = {
     /**
      * branchesController.create()
      */
-    create: function (req, res) {
-        var branches = new branchesModel({
-			branch_code : req.body.branch_code,
+    create: (req, res) => {
+        let branches = new branchesModel({branch_code : req.body.branch_code,
 			branch_name : req.body.branch_name,
 			branch_manager : req.body.branch_manager,
 			pan : req.body.pan,
@@ -61,7 +59,7 @@ module.exports = {
 
         });
 
-        branches.save(function (err, branches) {
+        branches.save((err, branches)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating branches',
@@ -75,9 +73,8 @@ module.exports = {
     /**
      * branchesController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        branchesModel.findOne({_id: id}, function (err, branches) {
+    update: (req, res) => {
+        let id = req.params.id; branchesModel.findOne({_id: id},  (err, branches)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting branches',
@@ -101,7 +98,7 @@ module.exports = {
 			branches.branch_phone2 = req.body.branch_phone2 ? req.body.branch_phone2 : branches.branch_phone2;
 			branches.sub_branch = req.body.sub_branch ? req.body.sub_branch : branches.sub_branch;
 			
-            branches.save(function (err, branches) {
+            branches.save((err, branches)=> {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating branches.',
@@ -117,9 +114,8 @@ module.exports = {
     /**
      * branchesController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        branchesModel.findByIdAndRemove(id, function (err, branches) {
+    remove: (req, res)=> {
+        let id = req.params.id; branchesModel.findByIdAndRemove(id, (err, branches)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the branches.',

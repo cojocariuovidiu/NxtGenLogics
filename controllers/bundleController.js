@@ -1,4 +1,4 @@
-var bundleModel = require('../models/bundleModel.js');
+const bundleModel = require('../models/bundleModel.js');
 
 /**
  * bundleController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * bundleController.list()
      */
-    list: function (req, res) {
-        bundleModel.find(function (err, bundles) {
+    list: (req, res)=> {
+        bundleModel.find((err, bundles) =>{
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting bundle.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * bundleController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        bundleModel.findOne({_id: id}, function (err, bundle) {
+    show: (req, res) =>{
+        let id = req.params.id;
+        bundleModel.findOne({_id: id}, (err, bundle)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting bundle.',
@@ -46,8 +46,8 @@ module.exports = {
     /**
      * bundleController.create()
      */
-    create: function (req, res) {
-        var bundle = new bundleModel({
+    create: (req, res)=> {
+        let bundle = new bundleModel({
 			id : req.body.id,
 			awbs : req.body.awbs,
 			hub : req.body.hub,
@@ -55,7 +55,7 @@ module.exports = {
 
         });
 
-        bundle.save(function (err, bundle) {
+        bundle.save((err, bundle)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating bundle',
@@ -69,9 +69,9 @@ module.exports = {
     /**
      * bundleController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        bundleModel.findOne({_id: id}, function (err, bundle) {
+    update: (req, res) =>{
+        let id = req.params.id;
+        bundleModel.findOne({_id: id},(err, bundle)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting bundle',
@@ -89,7 +89,7 @@ module.exports = {
 			bundle.hub = req.body.hub ? req.body.hub : bundle.hub;
 			bundle.date = req.body.date ? req.body.date : bundle.date;
 			
-            bundle.save(function (err, bundle) {
+            bundle.save((err, bundle) =>{
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating bundle.',
@@ -105,9 +105,9 @@ module.exports = {
     /**
      * bundleController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        bundleModel.findByIdAndRemove(id, function (err, bundle) {
+    remove:(req, res) =>{
+        let id = req.params.id;
+        bundleModel.findByIdAndRemove(id, (err, bundle)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the bundle.',

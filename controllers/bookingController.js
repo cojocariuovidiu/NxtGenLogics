@@ -1,4 +1,4 @@
-var bookingModel = require('../models/bookingModel.js');
+const bookingModel = require('../models/bookingModel.js');
 
 /**
  * bookingController.js
@@ -10,7 +10,7 @@ module.exports = {
     /**
      * bookingController.list()
      */
-    list: function (req, res) {
+    list: (req, res) => {
         bookingModel.find(function (err, bookings) {
             if (err) {
                 return res.status(500).json({
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * bookingController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        bookingModel.findOne({_id: id}, function (err, booking) {
+    show: (req, res) => {
+        let id = req.params.id;
+        bookingModel.findOne({_id: id}, (err, booking) => {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting booking.',
@@ -46,8 +46,8 @@ module.exports = {
     /**
      * bookingController.create()
      */
-    create: function (req, res) {
-        var booking = new bookingModel({
+    create: (req, res) => {
+        let booking = new bookingModel({
 			awb : req.body.awb,
 			booking_date : req.body.booking_date,
 			bookin_time : req.body.bookin_time,
@@ -75,7 +75,7 @@ module.exports = {
 
         });
 
-        booking.save(function (err, booking) {
+        booking.save((err, booking)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating booking',
@@ -89,9 +89,9 @@ module.exports = {
     /**
      * bookingController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        bookingModel.findOne({_id: id}, function (err, booking) {
+    update: (req, res) => {
+        let id = req.params.id;
+        bookingModel.findOne({_id: id}, (err, booking) => {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting booking',
@@ -129,7 +129,7 @@ module.exports = {
 			booking.remarks = req.body.remarks ? req.body.remarks : booking.remarks;
 			booking.delivery_date = req.body.delivery_date ? req.body.delivery_date : booking.delivery_date;
 			
-            booking.save(function (err, booking) {
+            booking.save((err, booking) => {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating booking.',
@@ -145,8 +145,8 @@ module.exports = {
     /**
      * bookingController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
+    remove: (req, res)=> {
+        let id = req.params.id;
         bookingModel.findByIdAndRemove(id, function (err, booking) {
             if (err) {
                 return res.status(500).json({

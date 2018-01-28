@@ -1,4 +1,4 @@
-var destinationModel = require('../models/destinationModel.js');
+const destinationModel = require('../models/destinationModel.js');
 
 /**
  * destinationController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * destinationController.list()
      */
-    list: function (req, res) {
-        destinationModel.find(function (err, destinations) {
+    list: (req, res)=> {
+        destinationModel.find( (err, destinations)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting destination.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * destinationController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        destinationModel.findOne({_id: id}, function (err, destination) {
+    show: (req, res) =>{
+        let id = req.params.id;
+        destinationModel.findOne({_id: id},  (err, destination)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting destination.',
@@ -46,8 +46,8 @@ module.exports = {
     /**
      * destinationController.create()
      */
-    create: function (req, res) {
-        var destination = new destinationModel({
+    create: (req, res) =>{
+        let destination = new destinationModel({
 			dest_id : req.body.dest_id,
 			dest_name : req.body.dest_name,
 			state : req.body.state,
@@ -55,7 +55,7 @@ module.exports = {
 
         });
 
-        destination.save(function (err, destination) {
+        destination.save( (err, destination)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating destination',
@@ -69,9 +69,9 @@ module.exports = {
     /**
      * destinationController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        destinationModel.findOne({_id: id}, function (err, destination) {
+    update: (req, res) =>{
+        let id = req.params.id;
+        destinationModel.findOne({_id: id},  (err, destination)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting destination',
@@ -89,7 +89,7 @@ module.exports = {
 			destination.state = req.body.state ? req.body.state : destination.state;
 			destination.transit_days = req.body.transit_days ? req.body.transit_days : destination.transit_days;
 			
-            destination.save(function (err, destination) {
+            destination.save( (err, destination)=> {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating destination.',
@@ -105,9 +105,9 @@ module.exports = {
     /**
      * destinationController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        destinationModel.findByIdAndRemove(id, function (err, destination) {
+    remove: (req, res)=> {
+        let id = req.params.id;
+        destinationModel.findByIdAndRemove(id,  (err, destination)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the destination.',

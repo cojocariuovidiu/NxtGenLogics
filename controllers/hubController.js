@@ -1,4 +1,4 @@
-var hubModel = require('../models/hubModel.js');
+const hubModel = require('../models/hubModel.js');
 
 /**
  * hubController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * hubController.list()
      */
-    list: function (req, res) {
-        hubModel.find(function (err, hubs) {
+    list:(req, res)=> {
+        hubModel.find( (err, hubs)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting hub.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * hubController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        hubModel.findOne({_id: id}, function (err, hub) {
+    show: (req, res)=> {
+        let id = req.params.id;
+        hubModel.findOne({_id: id},  (err, hub)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting hub.',
@@ -46,8 +46,8 @@ module.exports = {
     /**
      * hubController.create()
      */
-    create: function (req, res) {
-        var hub = new hubModel({
+    create:  (req, res)=> {
+        let hub = new hubModel({
 			id : req.body.id,
 			address : req.body.address,
 			state : req.body.state,
@@ -58,7 +58,7 @@ module.exports = {
 
         });
 
-        hub.save(function (err, hub) {
+        hub.save((err, hub)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating hub',
@@ -72,9 +72,9 @@ module.exports = {
     /**
      * hubController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        hubModel.findOne({_id: id}, function (err, hub) {
+    update: (req, res)=> {
+        let id = req.params.id;
+        hubModel.findOne({_id: id}, (err, hub)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting hub',
@@ -95,7 +95,7 @@ module.exports = {
 			hub.lat = req.body.lat ? req.body.lat : hub.lat;
 			hub.lan = req.body.lan ? req.body.lan : hub.lan;
 			
-            hub.save(function (err, hub) {
+            hub.save((err, hub)=> {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating hub.',
@@ -111,9 +111,9 @@ module.exports = {
     /**
      * hubController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        hubModel.findByIdAndRemove(id, function (err, hub) {
+    remove: (req, res)=> {
+        let id = req.params.id;
+        hubModel.findByIdAndRemove(id, (err, hub)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the hub.',

@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var cnoteController = require('../controllers/cnoteController.js');
+const express = require('express');
+const router = express.Router();
+const cnoteController = require('../controllers/cnoteController.js');
 
 /*
  * GET

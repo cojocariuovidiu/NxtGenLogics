@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var manifestController = require('../controllers/manifestController.js');
+const express = require('express');
+const router = express.Router();
+const manifestController = require('../controllers/manifestController.js');
 
 /*
  * GET

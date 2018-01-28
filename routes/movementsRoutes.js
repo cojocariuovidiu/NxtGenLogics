@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var movementsController = require('../controllers/movementsController.js');
+const express = require('express');
+const router = express.Router();
+const movementsController = require('../controllers/movementsController.js');
 
 /*
  * GET

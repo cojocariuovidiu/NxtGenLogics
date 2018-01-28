@@ -1,4 +1,4 @@
-var modeModel = require('../models/modeModel.js');
+const modeModel = require('../models/modeModel.js');
 
 /**
  * modeController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * modeController.list()
      */
-    list: function (req, res) {
-        modeModel.find(function (err, modes) {
+    list: (req, res)=> {
+        modeModel.find( (err, modes)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting mode.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * modeController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        modeModel.findOne({_id: id}, function (err, mode) {
+    show:(req, res)=> {
+        let id = req.params.id;
+        modeModel.findOne({_id: id},  (err, mode)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting mode.',
@@ -46,8 +46,8 @@ module.exports = {
     /**
      * modeController.create()
      */
-    create: function (req, res) {
-        var mode = new modeModel({
+    create:  (req, res) =>{
+        let mode = new modeModel({
 			mode_id : req.body.mode_id,
 			mode_name : req.body.mode_name,
 			mode_prefix : req.body.mode_prefix,
@@ -55,7 +55,7 @@ module.exports = {
 
         });
 
-        mode.save(function (err, mode) {
+        mode.save( (err, mode)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating mode',
@@ -69,9 +69,9 @@ module.exports = {
     /**
      * modeController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        modeModel.findOne({_id: id}, function (err, mode) {
+    update: (req, res) =>{
+        let id = req.params.id;
+        modeModel.findOne({_id: id},  (err, mode)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting mode',
@@ -89,7 +89,7 @@ module.exports = {
 			mode.mode_prefix = req.body.mode_prefix ? req.body.mode_prefix : mode.mode_prefix;
 			mode.transit_days = req.body.transit_days ? req.body.transit_days : mode.transit_days;
 			
-            mode.save(function (err, mode) {
+            mode.save((err, mode)=> {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating mode.',
@@ -105,9 +105,9 @@ module.exports = {
     /**
      * modeController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        modeModel.findByIdAndRemove(id, function (err, mode) {
+    remove: (req, res)=> {
+        let id = req.params.id;
+        modeModel.findByIdAndRemove(id,  (err, mode)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the mode.',

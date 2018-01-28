@@ -1,4 +1,4 @@
-var bundle_awbModel = require('../models/bundle-awbModel.js');
+const bundle_awbModel = require('../models/bundle-awbModel.js');
 
 /**
  * bundle-awbController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * bundle-awbController.list()
      */
-    list: function (req, res) {
-        bundle_awbModel.find(function (err, bundle_awbs) {
+    list: (req, res) => {
+        bundle_awbModel.find((err, bundle_awbs)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting bundle-awb.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * bundle-awbController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        bundle_awbModel.findOne({_id: id}, function (err, bundle_awb) {
+    show: (req, res) =>{
+        let id = req.params.id;
+        bundle_awbModel.findOne({_id: id}, (err, bundle_awb)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting bundle-awb.',
@@ -46,15 +46,15 @@ module.exports = {
     /**
      * bundle-awbController.create()
      */
-    create: function (req, res) {
-        var bundle_awb = new bundle-awbModel({
+    create: (req, res)=> {
+        let bundle_awb = new bundle-awbModel({
 			bundle_id : req.body.bundle_id,
 			awb : req.body.awb,
 			pcs : req.body.pcs
 
         });
 
-        bundle_awb.save(function (err, bundle_awb) {
+        bundle_awb.save((err, bundle_awb)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating bundle-awb',
@@ -68,9 +68,9 @@ module.exports = {
     /**
      * bundle-awbController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        bundle_awbModel.findOne({_id: id}, function (err, bundle_awb) {
+    update: (req, res)=> {
+        let id = req.params.id;
+        bundle_awbModel.findOne({_id: id}, (err, bundle_awb) =>{
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting bundle-awb',
@@ -87,7 +87,7 @@ module.exports = {
 			bundle_awb.awb = req.body.awb ? req.body.awb : bundle_awb.awb;
 			bundle_awb.pcs = req.body.pcs ? req.body.pcs : bundle_awb.pcs;
 			
-            bundle_awb.save(function (err, bundle_awb) {
+            bundle_awb.save((err, bundle_awb) =>{
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating bundle-awb.',
@@ -103,9 +103,9 @@ module.exports = {
     /**
      * bundle-awbController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        bundle_awbModel.findByIdAndRemove(id, function (err, bundle_awb) {
+    remove: (req, res) =>{
+        let id = req.params.id;
+        bundle_awbModel.findByIdAndRemove(id,(err, bundle_awb) =>{
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the bundle-awb.',

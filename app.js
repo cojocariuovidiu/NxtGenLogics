@@ -1,36 +1,36 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var config = require('./db');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const config = require('./db');
 mongoose.connect(config.database);
 
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var destRoutes = require('./routes/destinationRoutes');
-var awbStoppages = require('./routes/awb-stoppagesRoutes');
-var bookingType = require('./routes/booking-typeRoutes');
-var booking = require('./routes/bookingRoutes');
-var branches = require('./routes/branchesRoutes');
-var bundleAwb = require('./routes/bundle-awbRoutes');
-var bundle = require('./routes/bundleRoutes');
-var cnote = require('./routes/cnoteRoutes');
-var reason = require('./routes/reasonsRoutes');
-var coloader = require('./routes/coLoaderRoutes');
-var hub = require('./routes/hubRoutes');
-var manifest = require('./routes/manifestRoutes');
-var mode = require('./routes/modeRoutes');
-var movement = require('./routes/movementsRoutes');
-var purchase = require('./routes/purchaseOrderRoutes');
-var staffs = require('./routes/staffsRoutes');
-var trains = require('./routes/trainsRoutes');
-var zone = require('./routes/zoneRoutes');
+const index = require('./routes/index');
+const users = require('./routes/users');
+const bookingType = require('./routes/booking-typeRoutes');
+const destRoutes = require('./routes/destinationRoutes');
+const awbStoppages = require('./routes/awb-stoppagesRoutes');
+const booking = require('./routes/bookingRoutes');
+const branches = require('./routes/branchesRoutes');
+const bundleAwb = require('./routes/bundle-awbRoutes');
+const bundle = require('./routes/bundleRoutes');
+const cnote = require('./routes/cnoteRoutes');
+const reason = require('./routes/reasonsRoutes');
+const coloader = require('./routes/coLoaderRoutes');
+const hub = require('./routes/hubRoutes');
+const manifest = require('./routes/manifestRoutes');
+const mode = require('./routes/modeRoutes');
+const movement = require('./routes/movementsRoutes');
+const purchase = require('./routes/purchaseOrderRoutes');
+const staffs = require('./routes/staffsRoutes');
+const trains = require('./routes/trainsRoutes');
+const zone = require('./routes/zoneRoutes');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

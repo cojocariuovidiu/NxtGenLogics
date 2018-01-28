@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var bookingController = require('../controllers/bookingController.js');
+const express = require('express');
+const router = express.Router();
+const bookingController = require('../controllers/bookingController.js');
 
 /*
  * GET

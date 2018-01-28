@@ -1,4 +1,4 @@
-var movementsModel = require('../models/movementsModel.js');
+const movementsModel = require('../models/movementsModel.js');
 
 /**
  * movementsController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * movementsController.list()
      */
-    list: function (req, res) {
-        movementsModel.find(function (err, movementss) {
+    list: (req, res)=> {
+        movementsModel.find( (err, movementss)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting movements.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * movementsController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        movementsModel.findOne({_id: id}, function (err, movements) {
+    show:  (req, res)=> {
+        let id = req.params.id;
+        movementsModel.findOne({_id: id}, (err, movements)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting movements.',
@@ -46,8 +46,8 @@ module.exports = {
     /**
      * movementsController.create()
      */
-    create: function (req, res) {
-        var movements = new movementsModel({
+    create: (req, res) =>{
+        let movements = new movementsModel({
 			id : req.body.id,
 			awb_bundle_id : req.body.awb_bundle_id,
 			awb_bundle : req.body.awb_bundle,
@@ -60,7 +60,7 @@ module.exports = {
 
         });
 
-        movements.save(function (err, movements) {
+        movements.save( (err, movements)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating movements',
@@ -74,9 +74,9 @@ module.exports = {
     /**
      * movementsController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        movementsModel.findOne({_id: id}, function (err, movements) {
+    update: (req, res)=> {
+        let id = req.params.id;
+        movementsModel.findOne({_id: id}, (err, movements)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting movements',
@@ -99,7 +99,7 @@ module.exports = {
 			movements.hub_ship = req.body.hub_ship ? req.body.hub_ship : movements.hub_ship;
 			movements.time = req.body.time ? req.body.time : movements.time;
 			
-            movements.save(function (err, movements) {
+            movements.save((err, movements)=> {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating movements.',
@@ -115,9 +115,9 @@ module.exports = {
     /**
      * movementsController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        movementsModel.findByIdAndRemove(id, function (err, movements) {
+    remove:(req, res)=> {
+        let id = req.params.id;
+        movementsModel.findByIdAndRemove(id, (err, movements)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the movements.',

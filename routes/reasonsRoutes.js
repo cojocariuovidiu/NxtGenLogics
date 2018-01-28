@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var reasonsController = require('../controllers/reasonsController.js');
+const express = require('express');
+const router = express.Router();
+const reasonsController = require('../controllers/reasonsController.js');
 
 /*
  * GET

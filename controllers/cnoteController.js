@@ -1,4 +1,4 @@
-var cnoteModel = require('../models/cnoteModel.js');
+const cnoteModel = require('../models/cnoteModel.js');
 
 /**
  * cnoteController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * cnoteController.list()
      */
-    list: function (req, res) {
-        cnoteModel.find(function (err, cnotes) {
+    list:(req, res) =>{
+        cnoteModel.find((err, cnotes)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting cnote.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * cnoteController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        cnoteModel.findOne({_id: id}, function (err, cnote) {
+    show:(req, res) =>{
+        let id = req.params.id;
+        cnoteModel.findOne({_id: id},(err, cnote)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting cnote.',
@@ -46,8 +46,8 @@ module.exports = {
     /**
      * cnoteController.create()
      */
-    create: function (req, res) {
-        var cnote = new cnoteModel({
+    create: (req, res)=> {
+        let cnote = new cnoteModel({
 			cnote_id : req.body.cnote_id,
 			cnote_code : req.body.cnote_code,
 			name : req.body.name,
@@ -58,7 +58,7 @@ module.exports = {
 
         });
 
-        cnote.save(function (err, cnote) {
+        cnote.save((err, cnote)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating cnote',
@@ -72,9 +72,9 @@ module.exports = {
     /**
      * cnoteController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        cnoteModel.findOne({_id: id}, function (err, cnote) {
+    update: (req, res)=> {
+        let id = req.params.id;
+        cnoteModel.findOne({_id: id}, (err, cnote) =>{
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting cnote',
@@ -95,7 +95,7 @@ module.exports = {
 			cnote.end_no = req.body.end_no ? req.body.end_no : cnote.end_no;
 			cnote.issue_date = req.body.issue_date ? req.body.issue_date : cnote.issue_date;
 			
-            cnote.save(function (err, cnote) {
+            cnote.save((err, cnote)=> {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating cnote.',
@@ -111,9 +111,9 @@ module.exports = {
     /**
      * cnoteController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        cnoteModel.findByIdAndRemove(id, function (err, cnote) {
+    remove: (req, res) =>{
+        let id = req.params.id;
+        cnoteModel.findByIdAndRemove(id, (err, cnote)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the cnote.',

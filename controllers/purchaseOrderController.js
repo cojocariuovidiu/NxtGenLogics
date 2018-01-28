@@ -1,4 +1,4 @@
-var purchaseOrderModel = require('../models/purchaseOrderModel.js');
+const purchaseOrderModel = require('../models/purchaseOrderModel.js');
 
 /**
  * purchaseOrderController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * purchaseOrderController.list()
      */
-    list: function (req, res) {
-        purchaseOrderModel.find(function (err, purchaseOrders) {
+    list:(req, res)=> {
+        purchaseOrderModel.find( (err, purchaseOrders) =>{
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting purchaseOrder.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * purchaseOrderController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        purchaseOrderModel.findOne({_id: id}, function (err, purchaseOrder) {
+    show: (req, res)=> {
+        let id = req.params.id;
+        purchaseOrderModel.findOne({_id: id},(err, purchaseOrder)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting purchaseOrder.',
@@ -46,8 +46,8 @@ module.exports = {
     /**
      * purchaseOrderController.create()
      */
-    create: function (req, res) {
-        var purchaseOrder = new purchaseOrderModel({
+    create: (req, res)=> {
+        let purchaseOrder = new purchaseOrderModel({
 			pod_id : req.body.pod_id,
 			awb_no : req.body.awb_no,
 			status : req.body.status,
@@ -60,7 +60,7 @@ module.exports = {
 
         });
 
-        purchaseOrder.save(function (err, purchaseOrder) {
+        purchaseOrder.save((err, purchaseOrder)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating purchaseOrder',
@@ -74,9 +74,9 @@ module.exports = {
     /**
      * purchaseOrderController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        purchaseOrderModel.findOne({_id: id}, function (err, purchaseOrder) {
+    update: (req, res)=> {
+        let id = req.params.id;
+        purchaseOrderModel.findOne({_id: id}, (err, purchaseOrder)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting purchaseOrder',
@@ -99,7 +99,7 @@ module.exports = {
 			purchaseOrder.receive_amount = req.body.receive_amount ? req.body.receive_amount : purchaseOrder.receive_amount;
 			purchaseOrder.remarks = req.body.remarks ? req.body.remarks : purchaseOrder.remarks;
 			
-            purchaseOrder.save(function (err, purchaseOrder) {
+            purchaseOrder.save((err, purchaseOrder)=> {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating purchaseOrder.',
@@ -115,9 +115,9 @@ module.exports = {
     /**
      * purchaseOrderController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        purchaseOrderModel.findByIdAndRemove(id, function (err, purchaseOrder) {
+    remove: (req, res)=> {
+        let id = req.params.id;
+        purchaseOrderModel.findByIdAndRemove(id, (err, purchaseOrder)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the purchaseOrder.',

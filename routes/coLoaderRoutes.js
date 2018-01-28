@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var coLoaderController = require('../controllers/coLoaderController.js');
+const express = require('express');
+const router = express.Router();
+const coLoaderController = require('../controllers/coLoaderController.js');
 
 /*
  * GET

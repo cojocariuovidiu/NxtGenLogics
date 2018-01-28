@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var branchesController = require('../controllers/branchesController.js');
+const express = require('express');
+const router = express.Router();
+const branchesController = require('../controllers/branchesController.js');
 
 /*
  * GET

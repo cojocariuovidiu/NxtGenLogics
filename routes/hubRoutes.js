@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var hubController = require('../controllers/hubController.js');
+const express = require('express');
+const router = express.Router();
+const hubController = require('../controllers/hubController.js');
 
 /*
  * GET

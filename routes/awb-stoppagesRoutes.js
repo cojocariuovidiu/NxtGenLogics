@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var awbStoppagescOntroller = require('../controllers/awb_stoppagesController.js');
+const express = require('express');
+const router = express.Router();
+const awbStoppagescOntroller = require('../controllers/awb_stoppagesController.js');
 
 /*
  * GET

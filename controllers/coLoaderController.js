@@ -1,4 +1,4 @@
-var coLoaderModel = require('../models/coLoaderModel.js');
+const coLoaderModel = require('../models/coLoaderModel.js');
 
 /**
  * coLoaderController.js
@@ -10,8 +10,8 @@ module.exports = {
     /**
      * coLoaderController.list()
      */
-    list: function (req, res) {
-        coLoaderModel.find(function (err, coLoaders) {
+    list: (req, res) =>{
+        coLoaderModel.find( (err, coLoaders) =>{
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting coLoader.',
@@ -25,9 +25,9 @@ module.exports = {
     /**
      * coLoaderController.show()
      */
-    show: function (req, res) {
-        var id = req.params.id;
-        coLoaderModel.findOne({_id: id}, function (err, coLoader) {
+    show:  (req, res) =>{
+        let id = req.params.id;
+        coLoaderModel.findOne({_id: id},  (err, coLoader) =>{
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting coLoader.',
@@ -46,8 +46,8 @@ module.exports = {
     /**
      * coLoaderController.create()
      */
-    create: function (req, res) {
-        var coLoader = new coLoaderModel({
+    create: (req, res) =>{
+        let coLoader = new coLoaderModel({
 			coloaderId : req.body.coloaderId,
 			loader_name : req.body.loader_name,
 			origin : req.body.origin,
@@ -60,7 +60,7 @@ module.exports = {
 
         });
 
-        coLoader.save(function (err, coLoader) {
+        coLoader.save( (err, coLoader)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating coLoader',
@@ -74,9 +74,9 @@ module.exports = {
     /**
      * coLoaderController.update()
      */
-    update: function (req, res) {
-        var id = req.params.id;
-        coLoaderModel.findOne({_id: id}, function (err, coLoader) {
+    update: (req, res)=> {
+        let id = req.params.id;
+        coLoaderModel.findOne({_id: id},  (err, coLoader) =>{
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting coLoader',
@@ -99,7 +99,7 @@ module.exports = {
 			coLoader.pan = req.body.pan ? req.body.pan : coLoader.pan;
 			coLoader.aadhar = req.body.aadhar ? req.body.aadhar : coLoader.aadhar;
 			
-            coLoader.save(function (err, coLoader) {
+            coLoader.save((err, coLoader)=> {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating coLoader.',
@@ -115,9 +115,9 @@ module.exports = {
     /**
      * coLoaderController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        coLoaderModel.findByIdAndRemove(id, function (err, coLoader) {
+    remove: (req, res)=> {
+        let id = req.params.id;
+        coLoaderModel.findByIdAndRemove(id,  (err, coLoader)=> {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the coLoader.',
