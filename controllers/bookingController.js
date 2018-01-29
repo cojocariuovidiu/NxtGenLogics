@@ -156,5 +156,28 @@ module.exports = {
             }
             return res.status(204).json();
         });
+    },
+
+    /**
+     * bookingController.report()
+     */
+    report: (req, res) => {
+        let from = req.body.from;
+        let to= req.body.to;
+        bookingModel.find({booking_date:{$gte: from, $lte: to }}, (err, bookings) => {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error when getting bookings.',
+                    error: err
+                });
+            }
+            if (!bookings) {
+                return res.status(404).json({
+                    message: 'No bookings in this period'
+                });
+            }
+            return res.json(bookings);
+        });
     }
+
 };
