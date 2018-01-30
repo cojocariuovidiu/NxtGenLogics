@@ -2,10 +2,7 @@ var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
 var bookingSchema = new Schema({
-	'awb' : {
-	 	type: Schema.Types.ObjectId,
-	 	ref: 'awb-stoppages'
-	},
+	'awb' : String,
 	'booking_date' : Date,
 	'bookin_time' : String,
 	'shipment_id' : String,
@@ -15,10 +12,7 @@ var bookingSchema = new Schema({
 	'address' : String,
 	'origin' : String,
 	'destination' : String,
-	'mode' : {
-	 	type: Schema.Types.ObjectId,
-	 	ref: 'mode'
-	},
+	'mode' : String,
 	'normal_pcs' : String,
 	'volumetric_pcs' : String,
 	'net_pcs' : String,
