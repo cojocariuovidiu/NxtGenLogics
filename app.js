@@ -5,12 +5,13 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const config = require('./db');
 mongoose.connect(config.database);
 
 
 const index = require('./routes/index');
-const users = require('./routes/users');
+const users = require('./routes/usersRoutes');
 const bookingType = require('./routes/booking-typeRoutes');
 const destRoutes = require('./routes/destinationRoutes');
 const awbStoppages = require('./routes/awb-stoppagesRoutes');
@@ -56,7 +57,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/api/v1/users', users);
 app.use('/api/v1/destRoute', destRoutes);
 app.use('/api/v1/awbStoppages', awbStoppages);
 app.use('/api/v1/bookingType', bookingType);

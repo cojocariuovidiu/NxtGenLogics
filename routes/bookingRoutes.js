@@ -27,4 +27,9 @@ router.put('/:id', bookingController.update);
  */
 router.delete('/:id', bookingController.remove);
 
+/*
+ * REPORT
+ */
+router.post('/report', bookingController.report);
+
 module.exports = router;
