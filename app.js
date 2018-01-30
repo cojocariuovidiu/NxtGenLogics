@@ -29,7 +29,7 @@ const purchase = require('./routes/purchaseOrderRoutes');
 const staffs = require('./routes/staffsRoutes');
 const trains = require('./routes/trainsRoutes');
 const zone = require('./routes/zoneRoutes');
-
+const master =require('./routes/masterRoutes');
 const app = express();
 
 // view engine setup
@@ -75,7 +75,7 @@ app.use('/api/v1/mode', mode);
 app.use('/api/v1/manifest', manifest);
 app.use('/api/v1/coloader', coloader);
 app.use('/api/v1/zone', zone);
-
+app.use('/api/v1/master',master);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
