@@ -9,6 +9,7 @@ var companySchema = new Schema({
 	'gst_no' : Number,
 	'pan' : String,
 	'city' : String,
+	'state': String,
 	'director' : String,
 	'md' : String,
 	'address' : String,
