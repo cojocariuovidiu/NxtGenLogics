@@ -15,18 +15,18 @@ import { SharedService } from '../../../layouts/shared-service';
 })
 export class PageCompanyInfoComponent implements OnInit {
   pageTitle: string = 'Company Info';
-  compname: String;
-  gst: String;
+  company_name: String;
+  gst_no: String;
   address: String;
   state: String;
   city: String;
   postcode: String;
-  dirname: String;
-  mdname: String;
-  regno: String;
+  director: String;
+  md: String;
+  reg_no: String;
   pan: String;
-  mdcont: String;
-  compcont: String;
+  md_number: String;
+  phone: String;
   comments: String;
   stateCtrl: FormControl;
   filteredStates: any;
@@ -108,18 +108,18 @@ export class PageCompanyInfoComponent implements OnInit {
 
   onCompProfileSubmit(){
     const comp = {
-      compname: this.compname,
-      gst: this.gst,
+      company_name: this.company_name,
+      gst_no: this.gst_no,
       address: this.address,
       state: this.state,
       city: this.city,
       postcode: this.postcode,
-      dirname: this.dirname,
-      mdname: this.mdname,
-      regno: this.regno,
+      director: this.director,
+      md: this.md,
+      reg_no: this.reg_no,
       pan: this.pan,
-      mdcont: this.mdcont,
-      compcont: this.compcont,
+      md_number: this.md_number,
+      phone: this.phone,
       comments: this.comments
     }
     this.authService.addCompany(comp).subscribe(data => {

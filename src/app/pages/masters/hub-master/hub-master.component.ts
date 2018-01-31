@@ -14,11 +14,13 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 })
 export class PageHubMasterComponent implements OnInit {
   pageTitle: string = 'Hub Master';
-  hubcode: String;
-  hname: String;
-  haddress: String;
-  hcity: String;
-  contact: String;
+  hub_code: String;
+  hub_name: String;
+  address: String;
+  state: String;
+  city: String;
+  phone: String;
+  contact_person: String;
   
   public form: FormGroup;
 
@@ -33,22 +35,24 @@ export class PageHubMasterComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      hubcode: [null, Validators.compose([Validators.required])],
-      hname: [null, Validators.compose([Validators.required])],
-      haddress: [null],
-      hcity: [null, Validators.compose([Validators.required])],
-      contact: [null]
-      
+      hub_code: [null, Validators.compose([Validators.required])],
+      hub_name: [null, Validators.compose([Validators.required])],
+      address: [null],
+      city: [null, Validators.compose([Validators.required])],
+      phone: [null],
+      contact_person: [null]
     });
   }
 
   onAddHubSubmit(){
     const hub = {
-      hubcode: this.hubcode,
-      hname: this.hname,
-      haddress: this.haddress,
-      hcity: this.hcity,
-      contact: this.contact
+      hub_code: this.hub_code,
+      hub_name: this.hub_name,
+      address: this.address,
+      city: this.city,
+      phone: this.phone,
+      contact_person: this.contact_person 
+
     }
     this.authService.addHub(hub).subscribe(data => {
       if(data.success){

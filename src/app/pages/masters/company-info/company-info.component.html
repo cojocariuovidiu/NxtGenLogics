@@ -1,25 +1,25 @@
 <card title="Create New Company Profile">
     <form (submit)="onCompProfileSubmit()">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <md-input-container class="md-icon-left">
           <md-icon>perm_identity</md-icon>
-          <input mdInput name="compname" [(ngModel)]="compname" placeholder="Company Name" value="">
+          <input mdInput name="company_name" [(ngModel)]="company_name" placeholder="Company Name" value="">
         </md-input-container>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <md-input-container class="md-icon-left">
           <md-icon>people_outline</md-icon>
-          <input mdInput name="gst" [(ngModel)]="gst" placeholder="GST Number" value="">
+          <input mdInput name="gst_no" [(ngModel)]="gst_no" placeholder="GST Number" value="">
         </md-input-container>
       </div>
-    </div>
-  
+    
+    <div class="col-md-4">
     <md-input-container>
       <textarea mdInput name="address" [(ngModel)]="address" placeholder="Address"></textarea>
     </md-input-container>
-  
-    <div class="row">
+  </div>
+    
       <div class="col-md-4">
         <md-input-container class="mb-0">
           <input mdInput name="state" [(ngModel)]="state" placeholder="State" [mdAutocomplete]="auto" [formControl]="stateCtrl">
@@ -42,25 +42,25 @@
           <md-hint align="end">{{characterCountHintExample.value.length}} / 5</md-hint>
         </md-input-container>
       </div>
-    </div>
-    <div class="row">
+    
+    
         <div class="col-md-4">
             <md-input-container>
-                <input mdInput name="dirname" [(ngModel)]="dirname" placeholder="Director Name" value="">
+                <input mdInput name="director" [(ngModel)]="director" placeholder="Director Name" value="">
               </md-input-container>
         </div>
         <div class="col-md-4">
           <md-input-container>
-            <input mdInput name="mdname" [(ngModel)]="mdname" placeholder="MD Name" value="">
+            <input mdInput name="md" [(ngModel)]="md" placeholder="MD Name" value="">
           </md-input-container>
         </div>
         <div class="col-md-4">
             <md-input-container>
-                <input mdInput name="regno" [(ngModel)]="regno" placeholder="Reg. Number" value="">
+                <input mdInput name="reg_no" [(ngModel)]="reg_no" placeholder="Reg. Number" value="">
               </md-input-container>
         </div>
-      </div>
-      <div class="row">
+      
+      
         <div class="col-md-4">
             <md-input-container>
                 <input mdInput name="pan" [(ngModel)]="pan" placeholder="PAN" value="">
@@ -68,20 +68,22 @@
         </div>
         <div class="col-md-4">
           <md-input-container>
-            <input mdInput name="mdcont" [(ngModel)]="mdcont" placeholder="MD Contact" value="">
+            <input mdInput name="md_number" [(ngModel)]="md_number" placeholder="MD Contact" value="">
           </md-input-container>
         </div>
         <div class="col-md-4">
             <md-input-container>
-                <input mdInput name="compcont" [(ngModel)]="compcont" placeholder="Company Contact Number" value="">
+                <input mdInput name="phone" [(ngModel)]="phone" placeholder="Company Contact Number" value="">
               </md-input-container>
         </div>
-      </div>
-    
+      
+      <div class="col-md-4">
   
     <md-input-container class="mb-0">
-      <textarea mdInput name="comments" [(ngModel)]="comments" placeholder="Comments" rows="5"></textarea>
+      <textarea mdInput name="comments" [(ngModel)]="comments" placeholder="Comments" rows="4"></textarea>
     </md-input-container>
+    </div>
+    </div>
     <button md-raised-button color="accent" type="submit" >Submit</button>
     </form>
   </card>

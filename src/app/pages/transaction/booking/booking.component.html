@@ -3,13 +3,13 @@
     <div class="row">
         <div class="col-md-4">
             <md-input-container>
-              <input mdInput placeholder="AWB Number" name="awbno" [(ngModel)]="awbno" [formControl]="form.controls['awbno']" >
+              <input mdInput placeholder="AWB Number" name="awb" [(ngModel)]="awb" [formControl]="form.controls['awb']" >
               
             </md-input-container>
           </div>
           <div class="col-md-4">
             <md-input-container>
-              <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" name="bookdate" [formControl]="form.controls['bookdate']" >
+              <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" name="booking_date" [formControl]="form.controls['booking_date']" >
               <button mdSuffix [mdDatepickerToggle]="picker"></button>
               </md-input-container>
             <md-datepicker #picker></md-datepicker>
@@ -27,8 +27,8 @@
           </div>
       <div class="col-md-4">
         <md-input-container>
-          <input mdInput placeholder="Consignor" [(ngModel)]="consignor"  name="consignor" [formControl]="form.controls['Consignor']">
-          <small *ngIf="form.controls['Consignor'].hasError('required') && form.controls['Consignor'].touched" class="form-message text-danger">You must input a Consignor.</small>
+          <input mdInput placeholder="Consignor" [(ngModel)]="consignor"  name="consignor" [formControl]="form.controls['consignor']">
+          <small *ngIf="form.controls['consignor'].hasError('required') && form.controls['consignor'].touched" class="form-message text-danger">You must input a Consignor.</small>
         </md-input-container>
       </div>
       <div class="col-md-4">
@@ -53,21 +53,21 @@
       </div>
         <div class="col-md-4">
             <md-input-container>
-              <input mdInput placeholder="Origin" [(ngModel)]="origin" name="origin" [formControl]="form.controls['Origin']">
-              <small *ngIf="form.controls['Origin'].hasError('required') && form.controls['Origin'].touched" class="form-message text-danger">You must include a Origin.</small>
+              <input mdInput placeholder="Origin" [(ngModel)]="origin" name="origin" [formControl]="form.controls['origin']">
+              <small *ngIf="form.controls['origin'].hasError('required') && form.controls['origin'].touched" class="form-message text-danger">You must include a Origin.</small>
               </md-input-container>
           </div>
           <div class="col-md-4">
               <md-input-container>
-                <input mdInput placeholder="Destination" name="destination" [(ngModel)]="destination" [formControl]="form.controls['Destination']">
-                <small *ngIf="form.controls['Destination'].hasError('required') && form.controls['Destination'].touched" class="form-message text-danger">You must include a Destination.</small>
+                <input mdInput placeholder="Destination" name="destination" [(ngModel)]="destination" [formControl]="form.controls['destination']">
+                <small *ngIf="form.controls['destination'].hasError('required') && form.controls['destination'].touched" class="form-message text-danger">You must include a Destination.</small>
                 </md-input-container>
             </div>
             
             <div class="col-md-4">
               <md-input-container>
-                <input mdInput placeholder="Number of Packets" name="packetsnum" [(ngModel)]="packetsnum" [formControl]="form.controls['packetsnum']">
-                <small *ngIf="form.controls['packetsnum'].hasError('required') && form.controls['packetsnum'].touched" class="form-message text-danger">You must enter a number.</small>
+                <input mdInput placeholder="Number of Packets" name="normal_pcs" [(ngModel)]="normal_pcs" [formControl]="form.controls['normal_pcs']">
+                <small *ngIf="form.controls['normal_pcs'].hasError('required') && form.controls['normal_pcs'].touched" class="form-message text-danger">You must enter a number.</small>
              </md-input-container>
             </div>
             <div class="col-md-4">
@@ -82,17 +82,17 @@
             </div>
             <div class="col-md-4">
               <md-input-container>
-                <input mdInput name="height" [(ngModel)]="Height" [formControl]="form.controls['Height']" placeholder="Single Packet Height (Inch)" >
+                <input mdInput name="height" [(ngModel)]="height" [formControl]="form.controls['height']" placeholder="Single Packet Height (Inch)" >
               </md-input-container>
             </div>
             <div class="col-md-4">
               <md-input-container>
-                <input mdInput name="actweight" [(ngModel)]="actweight" [formControl]="form.controls['actweight']" placeholder="Total Actual Weight" >
+                <input mdInput name="actual_wt" [(ngModel)]="actual_wt" [formControl]="form.controls['actual_wt']" placeholder="Total Actual Weight" >
               </md-input-container>
             </div>
             <div class="col-md-4">
               <md-input-container>
-                <input mdInput name="volweight" [(ngModel)]="volweight" [formControl]="form.controls['volweight']" placeholder="Volumetric Weight" >
+                <input mdInput name="volumetric_wt" [(ngModel)]="volumetric_wt" [formControl]="form.controls['volumetric_wt']" placeholder="Volumetric Weight" >
               </md-input-container>
             </div>
 
@@ -108,12 +108,12 @@
 
             <div class="col-md-4">
               <md-input-container>
-                <input mdInput name="invno"   [(ngModel)]="invno" [formControl]="form.controls['invno']" placeholder="Invoice Number" >
+                <input mdInput name="inv_no"   [(ngModel)]="inv_no" [formControl]="form.controls['inv_no']" placeholder="Invoice Number" >
               </md-input-container>
             </div>
             <div class="col-md-4">
               <md-input-container>
-                <input name="invamt" [(ngModel)]="invamt" [formControl]="form.controls['invamt']" mdInput placeholder="Invoice Amount">
+                <input name="inv_no" [(ngModel)]="inv_val" [formControl]="form.controls['inv_val']" mdInput placeholder="Invoice Amount">
               </md-input-container>
             </div>
             <div class="col-md-4">
@@ -123,7 +123,7 @@
             </div>
             <div class="col-md-4">
               <md-input-container>
-                <input name="invtotal" [(ngModel)]="invtotal" [formControl]="form.controls['invtotal']" mdInput placeholder="Total Amount">
+                <input name="inv_val" [(ngModel)]="inv_val" [formControl]="form.controls['inv_val']" mdInput placeholder="Expected Amount">
               </md-input-container>
             </div>
             </div>

@@ -16,8 +16,10 @@ const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
 })
 export class PageBookingComponent implements OnInit {
   pageTitle: string = 'Booking';
-  awbno: String;
-  bookdate: String;
+  awb: String;
+  booking_date: Date;
+  bookin_time: String;
+  shipment_id: String;
   company: String;
   consignor: String;
   consignee: String;
@@ -25,20 +27,28 @@ export class PageBookingComponent implements OnInit {
   origin: String;
   destination: String;
   mode: String;
-  packetsnum: Number;
+  normal_pcs: Number;
+  volumetric_pcs: String;
+  net_pcs: String;
   length: Number;
   width: Number;
   Height: Number;
-  actweight: Number;
-  volweight: Number;
+  actual_wt: Number;
+  volumetric_wt: Number;
+  chr_wt: String;
+  doc_type: Array<string>; 
+  booking_type: String;
   paymode: String;
-  invno: Number;
-  invamt: Number;
+  inv_no: Number;
+  inv_val: Number;
   gst: String;
   invtotal: Number;
+  packing_type: Array<string>;
   bundled: Number;
   bundleids: String;
   status: String;
+  remarks: String;
+  delivery_date: Date;
 
   public form: FormGroup;
   companyCtrl: FormControl;
@@ -70,33 +80,33 @@ export class PageBookingComponent implements OnInit {
   }
   ngOnInit() {
     this.form = this.fb.group({
-      Consignor: [null, Validators.compose([Validators.required])],
+      consignor: [null, Validators.compose([Validators.required])],
       consignee: [null, Validators.compose([Validators.required])],
-      Origin: [null, Validators.compose([Validators.required])],
-      Destination: [null, Validators.compose([Validators.required])],
+      origin: [null, Validators.compose([Validators.required])],
+      destination: [null, Validators.compose([Validators.required])],
       mode: [null, Validators.compose([Validators.required])],
-      awbno: [null],
-      bookdate: [null],
+      awb: [null],
+      booking_date: [null],
       address: [null],
       length: [null],
       width: [null],
-      Height: [null],
-      actweight: [null],
-      volweight: [null],
+      height: [null],
+      actual_wt: [null],
+      volumetric_wt: [null],
       paymode: [null],
-      invno: [null],
-      invamt: [null],
+      inv_no: [null],
+      inv_val: [null],
       gst: [null],
       invtotal: [null],
-      packetsnum: [null, Validators.compose([Validators.required])]
+      normal_pcs: [null, Validators.compose([Validators.required])]
       
     });
   }
 
   onBookingSubmit(){
     const booking = {
-      awbno: this.awbno,
-      bookdate: this.bookdate,
+      awb: this.awb,
+      booking_date: this.booking_date,
       company: this.company,
       consignor: this.consignor,
       consignee: this.consignee,
@@ -104,15 +114,15 @@ export class PageBookingComponent implements OnInit {
       origin: this.origin,
       destination: this.destination,
       mode: this.mode,
-      packetsnum: this.packetsnum,
+      normal_pcs: this.normal_pcs,
       length: this.length,
       width: this.width,
       Height: this.Height,
-      actweight: this.actweight,
-      volweight: this.volweight,
+      actual_wt: this.actual_wt,
+      volumetric_wt: this.volumetric_wt,
       paymode: this.paymode,
-      invno: this.invno,
-      invamt: this.invamt,
+      inv_no: this.inv_no,
+      inv_val: this.inv_val,
       gst: this.gst,
       invtotal: this.invtotal,
       bundled: 0,

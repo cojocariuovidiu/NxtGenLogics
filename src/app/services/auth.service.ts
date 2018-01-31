@@ -63,7 +63,7 @@ export class AuthService {
 
   prepEndpoint(ep){
     if(this.isDev){
-      return 'http://localhost:8080/'+ep;
+      return 'http://localhost:3000/api/v1/'+ep;
     } else {
       return ep;
     }
@@ -72,7 +72,7 @@ export class AuthService {
   addBooking(booking){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    let ep = this.prepEndpoint('bookings/add');
+    let ep = this.prepEndpoint('booking');
     return this.http.post(ep, booking,{headers: headers})
       .map(res => res.json());
   }
@@ -152,7 +152,7 @@ export class AuthService {
   addCompany(comp){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    let ep = this.prepEndpoint('companies/add');
+    let ep = this.prepEndpoint('company');
     return this.http.post(ep, comp,{headers: headers})
       .map(res => res.json());
   }
@@ -169,7 +169,7 @@ export class AuthService {
   addHub(hubs){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    let ep = this.prepEndpoint('hubs/add');
+    let ep = this.prepEndpoint('hub');
     return this.http.post(ep, hubs,{headers: headers})
       .map(res => res.json());
 

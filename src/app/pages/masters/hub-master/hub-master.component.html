@@ -3,33 +3,39 @@
     <div class="row">
         <div class="col-md-4">
             <md-input-container>
-              <input mdInput placeholder="Hub Code" name="hubcode" [(ngModel)]="hubcode" [formControl]="form.controls['hubcode']">
-              <small *ngIf="form.controls['hubcode'].hasError('required') && form.controls['hubcode'].touched" class="form-message text-danger">No space.</small>
+              <input mdInput placeholder="Hub Code" name="hub_code" [(ngModel)]="hub_code" [formControl]="form.controls['hub_code']">
+              <small *ngIf="form.controls['hub_code'].hasError('required') && form.controls['hub_code'].touched" class="form-message text-danger">No space.</small>
               
             </md-input-container>
           </div>
       <div class="col-md-4">
         <md-input-container>
-          <input mdInput placeholder="Hub Name" name="hname" [(ngModel)]="hname" [formControl]="form.controls['hname']">
-          <small *ngIf="form.controls['hname'].hasError('required') && form.controls['hname'].touched" class="form-message text-danger">You must include a Hub name.</small>
+          <input mdInput placeholder="Hub Name" name="hub_name" [(ngModel)]="hub_name" [formControl]="form.controls['hub_name']">
+          <small *ngIf="form.controls['hub_name'].hasError('required') && form.controls['hub_name'].touched" class="form-message text-danger">You must include a Hub name.</small>
          
         </md-input-container>
       </div>
       <div class="col-md-4">
           <md-input-container>
-            <input mdInput placeholder="Hub Address" name="haddress" [(ngModel)]="haddress" [formControl]="form.controls['haddress']">
+            <input mdInput placeholder="Hub Address" name="address" [(ngModel)]="address" [formControl]="form.controls['address']">
           </md-input-container>
         </div>
         <div class="col-md-4">
             <md-input-container>
-              <input mdInput placeholder="Hub City" name="hcity" [(ngModel)]="hcity" [formControl]="form.controls['hcity']">
-              <small *ngIf="form.controls['hcity'].hasError('required') && form.controls['hcity'].touched" class="form-message text-danger">You must include a City name.</small>
+              <input mdInput placeholder="Hub City" name="city" [(ngModel)]="city" [formControl]="form.controls['city']">
+              <small *ngIf="form.controls['city'].hasError('required') && form.controls['city'].touched" class="form-message text-danger">You must include a City name.</small>
               
             </md-input-container>
           </div>
           <div class="col-md-4">
               <md-input-container>
-                <input mdInput placeholder="Contact No." name="contact" [(ngModel)]="contact" [formControl]="form.controls['contact']">
+                <input mdInput placeholder="Contact No." name="phone" [(ngModel)]="phone" [formControl]="form.controls['phone']">
+                
+              </md-input-container>
+            </div>
+            <div class="col-md-4">
+              <md-input-container>
+                <input mdInput placeholder="Contact Person" name="contact_person" [(ngModel)]="contact_person" [formControl]="form.controls['contact_person']">
                 
               </md-input-container>
             </div>
