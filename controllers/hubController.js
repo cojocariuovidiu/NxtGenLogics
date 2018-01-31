@@ -49,7 +49,9 @@ module.exports = {
     create:  (req, res)=> {
         let hub = new hubModel({
 			id : req.body.id,
+            hub_name: req.body.hub_name,
 			address : req.body.address,
+            city: req.body.city,
 			state : req.body.state,
 			phone : req.body.phone,
 			contact_person : req.body.contact_person,
