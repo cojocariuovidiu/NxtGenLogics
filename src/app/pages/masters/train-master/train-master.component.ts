@@ -14,12 +14,12 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 })
 export class PageTrainMasterComponent implements OnInit {
   pageTitle: string = 'Train Master';
-  tname: String;
-  sname: String;
-  dname: String;
-  dtime: String;
-  atime: String;
-  trainno: String;
+  train_name: String;
+  train_source: String;
+  train_destination: String;
+  depart_atsource: String;
+  arrival_atdest: String;
+  train_number: String;
   public form: FormGroup;
 
   constructor( private fb: FormBuilder, 
@@ -33,24 +33,24 @@ export class PageTrainMasterComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      tname: [null, Validators.compose([Validators.required, Validators.minLength(5)])],
-      sname: [null, Validators.compose([Validators.required, Validators.minLength(5)])],
-      dname: [null, Validators.compose([Validators.required, Validators.minLength(2)])],
-      dtime: [null, Validators.compose([Validators.required, Validators.minLength(2)])],
-      atime: [null, Validators.compose([Validators.required, Validators.minLength(5)])],
-      trainno: [null, Validators.compose([Validators.required])]
+      train_name: [null, Validators.compose([Validators.required, Validators.minLength(5)])],
+      train_source: [null, Validators.compose([Validators.required, Validators.minLength(5)])],
+      train_destination: [null, Validators.compose([Validators.required, Validators.minLength(2)])],
+      depart_atsource: [null, Validators.compose([Validators.required, Validators.minLength(2)])],
+      arrival_atdest: [null, Validators.compose([Validators.required, Validators.minLength(5)])],
+      train_number: [null, Validators.compose([Validators.required])]
       
     });
   }
 
   onAddtrainSubmit(){
     const train = {
-      tname: this.tname,
-      sname: this.sname,
-      dname: this.dname,
-      dtime: this.dtime,
-      atime: this.atime,
-      trainno: this.trainno
+      train_name: this.train_name,
+      train_source: this.train_source,
+      train_destination: this.train_destination,
+      depart_atsource: this.depart_atsource,
+      arrival_atdest: this.arrival_atdest,
+      train_number: this.train_number
 
     }
     this.authService.addTrain(train).subscribe(data => {

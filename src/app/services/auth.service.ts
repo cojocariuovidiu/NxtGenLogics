@@ -160,7 +160,7 @@ export class AuthService {
   addTrain(trains){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    let ep = this.prepEndpoint('trains/add');
+    let ep = this.prepEndpoint('trains');
     return this.http.post(ep, trains,{headers: headers})
       .map(res => res.json());
 
