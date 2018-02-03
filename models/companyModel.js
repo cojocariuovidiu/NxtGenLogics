@@ -5,16 +5,18 @@ var companySchema = new Schema({
 	'compId' : String,
 	'base_location' : String,
 	'company_name' : String,
-	'reg_no' : Number,
-	'gst_no' : Number,
+	'reg_no' : String,
+	'gst_no' : String,
 	'pan' : String,
 	'city' : String,
 	'state': String,
 	'director' : String,
 	'md' : String,
 	'address' : String,
+	'postcode': String,
 	'phone' : Number,
-	'md number' : Number
+	'md_number' : Number,
+	'comments': String
 });
 
 module.exports = mongoose.model('company', companySchema);

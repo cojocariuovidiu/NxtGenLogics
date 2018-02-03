@@ -4,7 +4,7 @@ var Schema   = mongoose.Schema;
 var bookingSchema = new Schema({
 	'awb' : String,
 	'booking_date' : Date,
-	'bookin_time' : String,
+	'booking_time' : String,
 	'shipment_id' : String,
 	'company' : String,
 	'consignor' : String,
@@ -14,6 +14,8 @@ var bookingSchema = new Schema({
 	'destination' : String,
 	'mode' : String,
 	'normal_pcs' : String,
+	'length': String,
+	'width': String,
 	'volumetric_pcs' : String,
 	'net_pcs' : String,
 	'actual_wt' : String,
@@ -25,7 +27,14 @@ var bookingSchema = new Schema({
 	'inv_val' : String,
 	'packing_type' : Array,
 	'remarks' : String,
-	'delivery_date' : Date
+	'delivery_date' : Date,
+	'gst': String,
+	'bundled': Number,
+	'bundleids': String,
+	'status': String
+
 });
 
 module.exports = mongoose.model('booking', bookingSchema);
+
+

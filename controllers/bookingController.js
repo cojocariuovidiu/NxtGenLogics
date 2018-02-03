@@ -74,8 +74,11 @@ module.exports = {
 			delivery_date : req.body.delivery_date
 
         });
-
+        
+        console.log(req.body);
+        
         booking.save((err, booking)=> {
+
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating booking',

@@ -47,6 +47,7 @@ module.exports = {
      * companyController.create()
      */
     create: (req, res) => {
+        console.log(req.body);
         let company = new companyModel({compId : req.body.compId,
 			base_location : req.body.base_location,
 			company_name : req.body.company_name,
