@@ -33,4 +33,5 @@ router.delete('/:id', bookingController.remove);
 router.post('/report', bookingController.report);
 
 
+
 module.exports = router;

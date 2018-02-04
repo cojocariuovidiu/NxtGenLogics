@@ -165,9 +165,12 @@ module.exports = {
      * bookingController.report()
      */
     report: (req, res) => {
-        let from = req.body.from;
-        let to= req.body.to;
-        bookingModel.find({booking_date:{$gte: from, $lte: to }}, (err, bookings) => {
+
+        let startDate = req.body.startDate;
+        let endDate= req.body.endDate;
+        console.log(startDate,endDate);
+        bookingModel.find({booking_date:{$gte: startDate, $lte: endDate }}, (err, bookings) => {
+
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting bookings.',
