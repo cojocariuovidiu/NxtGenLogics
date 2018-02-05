@@ -166,6 +166,16 @@ export class AuthService {
 
   }
 
+  addDestination(destination){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('destination');
+    return this.http.post(ep, destination,{headers: headers})
+      .map(res => res.json());
+
+  }
+
+
   addHub(hubs){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
