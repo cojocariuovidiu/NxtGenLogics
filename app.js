@@ -71,6 +71,7 @@ app.use('/api/v1/company', company);
 app.use('/api/v1/reason', reason);
 app.use('/api/v1/hub', hub);
 app.use('/api/v1/trains', trains);
+app.use('/api/v1/destination', destRoutes);
 app.use('/api/v1/staffs', staffs);
 app.use('/api/v1/purchase', purchase);
 app.use('/api/v1/movement', movement);

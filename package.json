@@ -24,12 +24,11 @@
     "multer": "^1.2.0",
     "nodemailer": "^2.7.0",
     "nodemailer-smtp-transport": "^2.7.2",
-     "async": "^2.6.0",
+    "async": "^2.6.0",
     "request": "^2.75.0",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",
     "pug": "2.0.0-beta11",
-    "request": "^2.75.0",
     "serve-favicon": "~2.4.5",
     "util": "^0.10.3"
   },
