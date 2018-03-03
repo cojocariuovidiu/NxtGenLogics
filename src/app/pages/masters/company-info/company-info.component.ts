@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 import { CustomValidators } from 'ng2-validation';
@@ -30,6 +30,7 @@ export class PageCompanyInfoComponent implements OnInit {
   comments: String;
   stateCtrl: FormControl;
   filteredStates: any;
+  public form: FormGroup;
 
   states = [
     'Andhra Pradesh',
@@ -88,6 +89,7 @@ export class PageCompanyInfoComponent implements OnInit {
   ];
 
   constructor( 
+    private fb: FormBuilder,
     private _sharedService: SharedService, 
     private flashMessage:FlashMessagesService,
     private authService:AuthService 
@@ -104,6 +106,22 @@ export class PageCompanyInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      company_name: [null, Validators.compose([Validators.required])],
+      phone: [null, Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(13), CustomValidators.digits])],
+      director: [null, Validators.compose([Validators.required])],
+      gst_no: [null],
+      address: [null],
+      state: [null],
+      city: [null],
+      postcode: [null],
+      md: [null],
+      reg_no: [null],
+      pan: [null],
+      md_number: [null],
+      comments: [null]
+    
+    });
   }
 
   onCompProfileSubmit(){

@@ -54,9 +54,9 @@ export class PageBookingComponent implements OnInit {
   companyCtrl: FormControl;
   filteredCompanies: any;
 
+
+  comp = this.getcompanies();
   company1 = [
-    'Gk Logistics',
-    'Abc log',
   ];
   modes = [
     {value: 'credit', viewValue: 'Credit'},
@@ -85,6 +85,7 @@ export class PageBookingComponent implements OnInit {
       origin: [null, Validators.compose([Validators.required])],
       destination: [null, Validators.compose([Validators.required])],
       mode: [null, Validators.compose([Validators.required])],
+      company: [null, Validators.compose([Validators.required])],
       awb: [null],
       booking_date: [null],
       address: [null],
@@ -101,6 +102,25 @@ export class PageBookingComponent implements OnInit {
       normal_pcs: [null, Validators.compose([Validators.required])]
       
     });
+  }
+
+
+  getcompanies(){
+    //let awbs1 = [];
+    console.log('try');
+    this.authService.listCompanies().subscribe(data => {
+     console.log(data); 
+      data.forEach(element => {
+           console.log(element);
+               this.company1.push(element);
+      });
+    
+    },err => {
+      console.log(err);
+      return false;
+    
+    });    
+
   }
 
   onBookingSubmit(){

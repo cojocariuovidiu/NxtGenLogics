@@ -45,11 +45,7 @@ export class PageAddBundleComponent implements OnInit {
     } 
   }
   
-  modes = [
-    {value: 'credit', viewValue: 'Credit'},
-    {value: 'cash', viewValue: 'Cash'},
-    {value: 'cheque', viewValue: 'Cheque'}
-  ];
+  
   constructor( 
     private fb: FormBuilder, 
     private _sharedService: SharedService, 
@@ -75,11 +71,11 @@ export class PageAddBundleComponent implements OnInit {
   getbookings(){
     //let awbs1 = [];
     this.authService.listBookings().subscribe(data => {
-     //console.log(data.bookings);
-      data.bookings.forEach(element => {
-           
-          if(element.awbno!=null && element.bundled !=element.packetsnum){ 
-            let awb = element.awbno+'-'+(element.packetsnum-element.bundled);
+     console.log(data);
+      data.forEach(element => {
+           console.log(element.awb);
+          if(element.awb!=null && element.bundled !=element.packetsnum){ 
+            let awb = element.awb+'-'+(element.normal_pcs-element.bundled);
             this.awbs.push(awb); }       
       });
       return this.awbs;
@@ -92,7 +88,6 @@ export class PageAddBundleComponent implements OnInit {
   }
   onBundleSubmit(){
     const bundle = {
-      awbno: this.awbno,
       bookdate: this.bookdate,
       hub: this.hub,
       awbss: this.SelectedAwbs

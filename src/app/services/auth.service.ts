@@ -80,7 +80,15 @@ export class AuthService {
   listBookings(){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    let ep = this.prepEndpoint('bookings');
+    let ep = this.prepEndpoint('booking');
+    return this.http.get(ep, {headers: headers})
+      .map(res => res.json());
+  }
+
+  listCompanies(){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('company');
     return this.http.get(ep, {headers: headers})
       .map(res => res.json());
   }
@@ -88,7 +96,7 @@ export class AuthService {
   listBundles(){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    let ep = this.prepEndpoint('bundles');
+    let ep = this.prepEndpoint('bundle');
     return this.http.get(ep, {headers: headers})
       .map(res => res.json());
   }
@@ -128,7 +136,7 @@ export class AuthService {
   addBundle(bundle){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    let ep = this.prepEndpoint('bundles/add');
+    let ep = this.prepEndpoint('bundle');
     return this.http.post(ep, bundle,{headers: headers})
       .map(res => res.json());
   }

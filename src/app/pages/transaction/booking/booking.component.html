@@ -15,15 +15,12 @@
             <md-datepicker #picker></md-datepicker>
           </div>
           <div class="col-md-4">
-            <md-input-container class="mb-0">
-              <input mdInput placeholder="Company / Party Name" [(ngModel)]="company"  name="company" [mdAutocomplete]="auto" [formControl]="companyCtrl">
-            </md-input-container>
-      
-            <md-autocomplete #auto="mdAutocomplete">
-              <md-option *ngFor="let company of filteredCompanies | async" [value]="company">
-                {{ company }}
-              </md-option>
-            </md-autocomplete>
+              <md-select [(ngModel)]="company" [formControl]="form.controls['company']" placeholder="company">
+                  <md-option *ngFor="let company of filteredCompanies | async" [value]="company._id">
+                    {{ company.company_name }}
+                  </md-option>
+                </md-select>
+            
           </div>
       <div class="col-md-4">
         <md-input-container>
