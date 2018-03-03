@@ -4,12 +4,12 @@ var Schema   = mongoose.Schema;
 var bundleSchema = new Schema({
 	'id' : String,
 	'awbs' : {
-	 	type: Schema.Types.ObjectId,
-	 	ref: 'awb-stoppages'
+	 	type: Array
+	 	
 	},
 	'hub' : {
-	 	type: Schema.Types.ObjectId,
-	 	ref: 'hub'
+	 	type: String
+	 	
 	},
 	'date' : Date
 });

@@ -49,11 +49,12 @@ module.exports = {
     create: (req, res)=> {
         let bundle = new bundleModel({
 			id : req.body.id,
-			awbs : req.body.awbs,
+			awbs : req.body.awbss,
 			hub : req.body.hub,
 			date : req.body.date
 
         });
+        console.log(req.body);
 
         bundle.save((err, bundle)=> {
             if (err) {

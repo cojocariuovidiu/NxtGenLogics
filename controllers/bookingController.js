@@ -71,7 +71,9 @@ module.exports = {
 			inv_val : req.body.inv_val,
 			packing_type : req.body.packing_type,
 			remarks : req.body.remarks,
-			delivery_date : req.body.delivery_date
+			delivery_date : req.body.delivery_date,
+            bundled: req.body.bundled,
+            status: req.body.status
 
         });
         
