@@ -92,6 +92,13 @@ export class AuthService {
     return this.http.get(ep, {headers: headers})
       .map(res => res.json());
   }
+  deleteCompany(id){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('company/'+id);
+    return this.http.delete(ep,{headers: headers})
+      .map(res => res.json());
+  }
 
   listBundles(){
     let headers = new Headers();

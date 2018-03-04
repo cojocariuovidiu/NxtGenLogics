@@ -138,8 +138,13 @@ export const MAINMENUITEMS: MainMenuItem[] = [
     icon: 'fa fa-th',
     active: false,
     groupTitle : false,
-    sub: '',
-    routing: '/default-layout/filtering-table',
+    sub: [
+      {
+        title: 'Invoice',
+        routing: '/default-layout/invoice'
+      }
+    ],
+    routing: '',
     externalLink: '',
     budge: '',
     budgeColor: ''

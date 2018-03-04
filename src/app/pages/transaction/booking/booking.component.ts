@@ -106,12 +106,8 @@ export class PageBookingComponent implements OnInit {
 
 
   getcompanies(){
-    //let awbs1 = [];
-    console.log('try');
     this.authService.listCompanies().subscribe(data => {
-     console.log(data); 
       data.forEach(element => {
-           console.log(element);
                this.company1.push(element);
       });
     

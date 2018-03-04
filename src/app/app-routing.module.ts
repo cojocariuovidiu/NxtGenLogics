@@ -47,7 +47,7 @@ import { Page500Component }             from './pages/extra-pages/page-500/page-
 import { PageAboutUsComponent }         from './pages/pages-service/about-us/about-us.component';
 import { PageFaqComponent }             from './pages/pages-service/faq/faq.component';
 import { PageTimelineComponent }        from './pages/pages-service/timeline/timeline.component';
-import { PageInvoiceComponent }         from './pages/pages-service/invoice/invoice.component';
+import { PageInvoiceComponent }         from './pages/billing/invoice/invoice.component';
 import { PageLineChartComponent }       from './pages/charts/line-chart/line-chart.component';
 import { PageBarChartComponent }        from './pages/charts/bar-chart/bar-chart.component';
 import { PageDoughnutChartComponent }   from './pages/charts/doughnut-chart/doughnut-chart.component';
@@ -62,12 +62,13 @@ import { PageEditingTableComponent }    from './pages/tables/editing-table/editi
 import { PageFilteringTableComponent }  from './pages/tables/filtering-table/filtering-table.component';
 import { PagePaginationTableComponent } from './pages/tables/pagination-table/pagination-table.component';
 import { PageFormElementsComponent }    from './pages/forms/form-elements/form-elements.component';
-import { PageCompanyInfoComponent }     from './pages/masters/company-info/company-info.component';
 import { PageFormLayoutComponent }      from './pages/forms/form-layout/form-layout.component';
 import { PageFormValidationComponent }  from './pages/forms/form-validation/form-validation.component';
 import { PageGoogleMapComponent }       from './pages/maps/google-map/google-map.component';
 import { PageLeafletMapComponent }      from './pages/maps/leaflet-map/leaflet-map.component';
 import { PageWidgetsComponent }         from './pages/widgets/widgets.component';
+import { PageCompanyInfoComponent }     from './pages/masters/company-info/company-info.component';
+import { PageCompanyListComponent }     from './pages/masters/company-list/company-list.component';
 import { PageDestinationsComponent }    from './pages/masters/destinations/destinations.component';
 import { PageTrainMasterComponent }     from './pages/masters/train-master/train-master.component';
 import { PageHubMasterComponent }       from './pages/masters/hub-master/hub-master.component';
@@ -129,11 +130,12 @@ const defaultRoutes: Routes = [
   { path: 'filtering-table', component: PageFilteringTableComponent },
   { path: 'pagination-table', component: PagePaginationTableComponent },
   { path: 'form-elements', component: PageFormElementsComponent },
-  { path: 'company-info', component: PageCompanyInfoComponent },
   { path: 'form-layout', component: PageFormLayoutComponent },
   { path: 'form-validation', component: PageFormValidationComponent },
   { path: 'google-map', component: PageGoogleMapComponent },
   { path: 'leaflet-map', component: PageLeafletMapComponent },
+  { path: 'company-info', component: PageCompanyInfoComponent },
+  { path: 'company-list', component: PageCompanyListComponent },
   { path: 'destinations', component: PageDestinationsComponent },
   { path: 'train-master', component: PageTrainMasterComponent },
   { path: 'hub-master', component: PageHubMasterComponent },

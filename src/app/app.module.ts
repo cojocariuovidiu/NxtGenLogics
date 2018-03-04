@@ -113,7 +113,7 @@ import { Page500Component }                 from './pages/extra-pages/page-500/p
 import { PageAboutUsComponent }             from './pages/pages-service/about-us/about-us.component';
 import { PageFaqComponent }                 from './pages/pages-service/faq/faq.component';
 import { PageTimelineComponent }            from './pages/pages-service/timeline/timeline.component';
-import { PageInvoiceComponent }             from './pages/pages-service/invoice/invoice.component';
+import { PageInvoiceComponent }             from './pages/billing/invoice/invoice.component';
 import { PageLineChartComponent }           from './pages/charts/line-chart/line-chart.component';
 import { PageBarChartComponent }            from './pages/charts/bar-chart/bar-chart.component';
 import { PageDoughnutChartComponent }       from './pages/charts/doughnut-chart/doughnut-chart.component';
@@ -129,7 +129,6 @@ import { PageEditingTableComponent }        from './pages/tables/editing-table/e
 import { PageFilteringTableComponent }      from './pages/tables/filtering-table/filtering-table.component';
 import { PagePaginationTableComponent }     from './pages/tables/pagination-table/pagination-table.component';
 import { PageFormElementsComponent }        from './pages/forms/form-elements/form-elements.component';
-import { PageCompanyInfoComponent }         from './pages/masters/company-info/company-info.component';
 import { PageFormLayoutComponent }          from './pages/forms/form-layout/form-layout.component';
 import { PageFormValidationComponent }      from './pages/forms/form-validation/form-validation.component';
 import { PageGoogleMapComponent }           from './pages/maps/google-map/google-map.component';
@@ -137,7 +136,8 @@ import { PageLeafletMapComponent }          from './pages/maps/leaflet-map/leafl
 import { PageWidgetsComponent }             from './pages/widgets/widgets.component';
 import { FooterComponent }                  from './a2-components/footer/footer.component';
 import { AdditionNavbarComponent }          from './a2-components/addition-navbar/addition-navbar.component';
-import { MastersComponent }                 from './masters/masters.component';
+import { PageCompanyInfoComponent }         from './pages/masters/company-info/company-info.component';
+import { PageCompanyListComponent }         from './pages/masters/company-list/company-list.component';
 import { PageDestinationsComponent }        from './pages/masters/destinations/destinations.component';
 import { PageTrainMasterComponent }         from './pages/masters/train-master/train-master.component';
 import { PageHubMasterComponent }           from './pages/masters/hub-master/hub-master.component';
@@ -215,7 +215,6 @@ import { PageHubOutComponent }              from './pages/transaction/hubout/hub
     BreadcrumbComponent,
     FileComponent,
     NIHTimelineComponent,
-
     PageDashboardComponent,
     PageDashboard2Component,
     PageButtonComponent,
@@ -238,7 +237,6 @@ import { PageHubOutComponent }              from './pages/transaction/hubout/hub
     PageTabsComponent,
     PageToolbarComponent,
     PageTooltipComponent,
-
     PageFileComponent,
     PageA2CardComponent,
     PageAlertComponent,
@@ -276,7 +274,6 @@ import { PageHubOutComponent }              from './pages/transaction/hubout/hub
     PageFilteringTableComponent,
     PagePaginationTableComponent,
     PageFormElementsComponent,
-    PageCompanyInfoComponent,
     PageFormLayoutComponent,
     PageFormValidationComponent,
     PageGoogleMapComponent,
@@ -284,7 +281,8 @@ import { PageHubOutComponent }              from './pages/transaction/hubout/hub
     PageWidgetsComponent,
     FooterComponent,
     AdditionNavbarComponent,
-    MastersComponent,
+    PageCompanyInfoComponent,
+    PageCompanyListComponent,
     PageDestinationsComponent,
     PageTrainMasterComponent,
     PageHubMasterComponent,
