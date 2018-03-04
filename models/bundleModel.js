@@ -8,8 +8,8 @@ var bundleSchema = new Schema({
 	 	
 	},
 	'hub' : {
-	 	type: String
-	 	
+	 	type: Schema.Types.ObjectId,
+	 	ref: 'hub'
 	},
 	'date' : Date
 });
