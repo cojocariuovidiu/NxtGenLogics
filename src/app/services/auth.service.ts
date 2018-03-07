@@ -16,7 +16,7 @@ export class AuthService {
   registerUser(user){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    let ep = this.prepEndpoint('users/register');
+    let ep = this.prepEndpoint('users/signup');
     return this.http.post(ep, user,{headers: headers})
       .map(res => res.json());
   }
@@ -24,7 +24,7 @@ export class AuthService {
   authenticateUser(user){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    let ep = this.prepEndpoint('users/authenticate');
+    let ep = this.prepEndpoint('users/login');
     return this.http.post(ep, user,{headers: headers})
       .map(res => res.json());
   }
@@ -81,6 +81,14 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
     let ep = this.prepEndpoint('booking');
+    return this.http.get(ep, {headers: headers})
+      .map(res => res.json());
+  }
+
+  companyBookings(id){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('mix/company/'+id);
     return this.http.get(ep, {headers: headers})
       .map(res => res.json());
   }
