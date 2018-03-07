@@ -32,6 +32,13 @@ router.delete('/:id', bookingController.remove);
  */
 router.post('/report', bookingController.report);
 
+/*
+ * POST
+ */
+router.post('/company', bookingController.company);
+
+
+
 
 
 module.exports = router;

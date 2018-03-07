@@ -16,6 +16,7 @@ const bookingType = require('./routes/booking-typeRoutes');
 const destRoutes = require('./routes/destinationRoutes');
 const awbStoppages = require('./routes/awb-stoppagesRoutes');
 const booking = require('./routes/bookingRoutes');
+const book = require('./routes/bookRoutes');
 const branches = require('./routes/branchesRoutes');
 const bundleAwb = require('./routes/bundle-awbRoutes');
 const bundle = require('./routes/bundleRoutes');
@@ -32,6 +33,7 @@ const staffs = require('./routes/staffsRoutes');
 const trains = require('./routes/trainsRoutes');
 const zone = require('./routes/zoneRoutes');
 const master =require('./routes/masterRoutes');
+const mix =require('./routes/mixRoutes');
 const app = express();
 
 // view engine setup
@@ -63,6 +65,7 @@ app.use('/api/v1/destRoute', destRoutes);
 app.use('/api/v1/awbStoppages', awbStoppages);
 app.use('/api/v1/bookingType', bookingType);
 app.use('/api/v1/booking', booking);
+app.use('/api/v1/book', book);
 app.use('/api/v1/branches', branches);
 app.use('/api/v1/bundle', bundle);
 app.use('/api/v1/bundleAwb', bundleAwb);
@@ -80,6 +83,7 @@ app.use('/api/v1/manifest', manifest);
 app.use('/api/v1/coloader', coloader);
 app.use('/api/v1/zone', zone);
 app.use('/api/v1/master',master);
+app.use('/api/v1/mix',mix);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

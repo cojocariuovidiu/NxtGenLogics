@@ -14,7 +14,9 @@ exports.signup = function(req, res) {
   } else {
     var newUser = new User({
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
+      email: req.body.email,
+      name: req.body.name
     });
     newUser.save(function(err) {
       if (err) {
@@ -64,3 +66,16 @@ exports.login = function(req, res) {
     }
   });
 };
+
+
+exports.userlist = function(req, res) {
+        User.find( (err, users)=> {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error when getting trains.',
+                    error: err
+                });
+            }
+            return res.json(users);
+        });
+    };

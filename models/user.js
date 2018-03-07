@@ -11,7 +11,13 @@ var UserSchema = new Schema({
   password: {
         type: String,
         required: true
-    }
+    },
+    name: {
+    type: String
+  },
+  email: {
+    type: String
+  }
 });
 
 UserSchema.pre('save', function (next) {

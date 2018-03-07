@@ -186,6 +186,31 @@ module.exports = {
             }
             return res.json(bookings);
         });
-    }
+    },
 
+/**
+     * bookingController.report()
+     */
+    company: (req, res) => {
+
+        let id = req.params.id;
+        
+        console.log(id);
+        bookingModel.find({company:id}, (err, bookings) => {
+
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error when getting bookings.',
+                    error: err
+                });
+            }
+            if (!bookings) {
+                return res.status(404).json({
+                    message: 'No bookings in this period'
+                });
+            }
+            return res.json(bookings);
+        });
+    }
+   
 };
