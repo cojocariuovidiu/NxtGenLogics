@@ -49,6 +49,7 @@ module.exports = {
     create: (req, res) => {
         let booking = new bookingModel({
 			awb : req.body.awb,
+            bookno: req.body.bookno,
 			booking_date : req.body.booking_date,
 			bookin_time : req.body.bookin_time,
 			shipment_id : req.body.shipment_id,
@@ -67,8 +68,15 @@ module.exports = {
 			chr_wt : req.body.chr_wt,
 			doc_type : req.body.doc_type,
 			booking_type : req.body.booking_type,
+            labour_charge: req.body.labour_charge,
+            document_charge: req.body.document_charge,
+            insurance_charge: req.body.insurance_charge,
+            other_charge: req.body.other_charge,
+            fixed_val: req.body.fixed_val,
+            gst: req.body.gst,
 			inv_no : req.body.inv_no,
 			inv_val : req.body.inv_val,
+            invtotal: req.body.invtotal,
 			packing_type : req.body.packing_type,
 			remarks : req.body.remarks,
 			delivery_date : req.body.delivery_date,
@@ -211,6 +219,30 @@ module.exports = {
             }
             return res.json(bookings);
         });
-    }
+    },
+
+
+/**
+     * bookingController.one()
+     */
+
+    one: (req, res) => {
+        
+        bookingModel.findOne().sort({'_id':-1}).exec((err, booking) => {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error when getting booking.',
+                    error: err
+                });
+            }
+            if (!booking) {
+                return res.status(404).json({
+                    message: 'No such booking'
+                });
+            }
+            return res.json(booking);
+        });
+    },
+
    
 };

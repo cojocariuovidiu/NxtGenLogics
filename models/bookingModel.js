@@ -3,6 +3,7 @@ var Schema   = mongoose.Schema;
 
 var bookingSchema = new Schema({
 	'awb' : String,
+	'bookno': Number,
 	'booking_date' : Date,
 	'booking_time' : String,
 	'shipment_id' : String,
@@ -28,7 +29,13 @@ var bookingSchema = new Schema({
 	'packing_type' : Array,
 	'remarks' : String,
 	'delivery_date' : Date,
+	'labour_charge': String,
+    'document_charge': String,
+    'insurance_charge': String,
+    'other_charge': String,
+    'fixed_val': String,
 	'gst': String,
+	'invtotal': Number,
 	'bundled': Number,
 	'bundleids': String,
 	'status': String

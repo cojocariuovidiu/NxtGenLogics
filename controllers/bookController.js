@@ -11,7 +11,7 @@ module.exports = {
      * bookController.list()
      */
     list: (req, res) => {
-        bookModel.find(function (err, books) {
+        bookModel.find({status:{ $ne : "used"}}).sort({"_id":-1}).limit(100).exec(function (err, books) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting book.',
@@ -47,18 +47,27 @@ module.exports = {
      * bookController.create()
      */
     create: (req, res) => {
-        let book = new bookModel({
-			book_no : req.body.book_no,
-			issued_to : req.body.issued_to,
-			issue_date : req.body.issue_date,
-			issued_by : req.body.issued_by,
-			status : req.body.status
+        let nfrom = req.body.book_no_from;
+        let nto = req.body.book_no_to;
+        let bookarray = new Array();
 
-        });
+        for(nfrom; nfrom<=nto; nfrom++){
+            bookarray.push({book_no : nfrom,
+            issued_to : req.body.issued_to,
+            issue_date : req.body.issue_date,
+            issued_by : req.body.issued_by,
+            status : req.body.status});
+        }
+
+        //let jsonbook =  JSON.stringify(bookarray);
+        //jsonbook = jsonbook.substring(1, jsonbook.length-1);
+       // jsonbook = JSON.parse(jsonbook);
+//console.log(bookarray);
+        let book = new bookModel( bookarray);
         
-        console.log(req.body);
+        console.log(nfrom);
         
-        book.save((err, book)=> {
+        bookModel.collection.insert(bookarray,(err, book)=> {
 
             if (err) {
                 return res.status(500).json({
@@ -68,6 +77,7 @@ module.exports = {
             }
             return res.status(201).json(book);
         });
+    
     },
 
     /**
@@ -122,5 +132,27 @@ module.exports = {
             return res.status(204).json();
         });
     },
+
+      /**
+     * bookController.one()
+     */
+    one: (req, res) => {
+        let id = req.params.id;
+        bookModel.findOne({status: 'open'}, (err, book) => {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error when getting book.',
+                    error: err
+                });
+            }
+            if (!book) {
+                return res.status(404).json({
+                    message: 'No such book no'
+                });
+            }
+            return res.json(book);
+        });
+    },
+
 
 };
