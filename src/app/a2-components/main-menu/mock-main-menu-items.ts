@@ -43,6 +43,14 @@ export const MAINMENUITEMS: MainMenuItem[] = [
         routing: '/default-layout/company-info'
       },
       {
+        title: 'Company List',
+        routing: '/default-layout/company-list'
+      },
+      {
+        title: 'Assign Book',
+        routing: '/default-layout/book-assign'
+      },
+      {
         title: 'Destinations',
         routing: '/default-layout/destinations'
       },
@@ -90,6 +98,10 @@ export const MAINMENUITEMS: MainMenuItem[] = [
       {
         title: 'Bookings',
         routing: '/default-layout/booking'
+      },
+      {
+        title: 'Bookings List',
+        routing: '/default-layout/booking-list'
       },
       {
         title: 'Register',

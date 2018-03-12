@@ -15,6 +15,7 @@ export class PageDestinationsComponent implements OnInit {
   dest_id: String;
   dest_name: String;
   state: String;
+  destinations: any;
     
   stateCtrl: FormControl;
   filteredStates: any;
@@ -81,6 +82,28 @@ export class PageDestinationsComponent implements OnInit {
       dest_name: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
       
     });
+
+    this.listDestinations();
+  }
+
+  listDestinations(){
+    this.authService.listDestinations().subscribe(data => {
+      this.destinations = data;
+      console.log(this.destinations);
+        },err => {
+          console.log(err);
+          return false;
+      });
+  }
+
+  deleteDestination(id){
+    this.authService.deleteDestination(id).subscribe(data => {
+      this.listDestinations();
+      console.log(id+" deleted"); 
+  },err => {
+    console.log(err);
+    return false;
+  });
   }
 
   onAddDestinationSubmit(){
@@ -93,8 +116,10 @@ export class PageDestinationsComponent implements OnInit {
     this.authService.addDestination(destination).subscribe(data => {
       if(data.success){
         this.flashMessage.show('destination added', {cssClass: 'alert-success', timeout: 3000});
+        this.listDestinations();
        // this.router.navigate(['/login']);
       } else {
+        this.listDestinations();
         this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
        // this.router.navigate(['/register']);
       }

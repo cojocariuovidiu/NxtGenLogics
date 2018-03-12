@@ -138,10 +138,13 @@ import { FooterComponent }                  from './a2-components/footer/footer.
 import { AdditionNavbarComponent }          from './a2-components/addition-navbar/addition-navbar.component';
 import { PageCompanyInfoComponent }         from './pages/masters/company-info/company-info.component';
 import { PageCompanyListComponent }         from './pages/masters/company-list/company-list.component';
+import { PageBookAssignComponent }         from './pages/masters/book-assign/book.component';
 import { PageDestinationsComponent }        from './pages/masters/destinations/destinations.component';
 import { PageTrainMasterComponent }         from './pages/masters/train-master/train-master.component';
 import { PageHubMasterComponent }           from './pages/masters/hub-master/hub-master.component';
 import { PageBookingComponent }             from './pages/transaction/booking/booking.component';
+import { PageBookingListComponent }         from './pages/transaction/booking/list/booking-list.component';
+import { PageBookingEditComponent }         from './pages/transaction/booking/edit/booking-edit.component';
 import { RegisterComponent }                from './pages/transaction/register/register.component';
 import { PageAddBundleComponent }           from './pages/transaction/bundle/add/addbundle.component';
 import { PageAwbTrackingComponent }         from './pages/transaction/awbtracking/awbtracking.component';
@@ -283,10 +286,13 @@ import { PageHubOutComponent }              from './pages/transaction/hubout/hub
     AdditionNavbarComponent,
     PageCompanyInfoComponent,
     PageCompanyListComponent,
+    PageBookAssignComponent,
     PageDestinationsComponent,
     PageTrainMasterComponent,
     PageHubMasterComponent,
     PageBookingComponent,
+    PageBookingListComponent,
+    PageBookingEditComponent,
     RegisterComponent,
     PageAddBundleComponent,
     PageAwbTrackingComponent,

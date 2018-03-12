@@ -39,6 +39,14 @@ export class AuthService {
       .map(res => res.json());
   }
 
+  listUsers(){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('users/userlist');
+    return this.http.get(ep, {headers: headers})
+      .map(res => res.json());
+  }
+
   storeUserData(token, user){
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
@@ -68,7 +76,6 @@ export class AuthService {
       return ep;
     }
   }
-
   addBooking(booking){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
@@ -77,10 +84,65 @@ export class AuthService {
       .map(res => res.json());
   }
 
+
+  assignBook(book){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('book');
+    return this.http.post(ep, book,{headers: headers})
+      .map(res => res.json());
+  }
+
+  listBooknos(){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('book');
+    return this.http.get(ep, {headers: headers})
+      .map(res => res.json());
+  }
+
+  getbookno(){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('mix/book/one');
+    return this.http.get(ep, {headers: headers})
+      .map(res => res.json());
+  }
+  deleteBook(id){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('book/'+id);
+    return this.http.delete(ep,{headers: headers})
+      .map(res => res.json());
+  }
+
   listBookings(){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
     let ep = this.prepEndpoint('booking');
+    return this.http.get(ep, {headers: headers})
+      .map(res => res.json());
+  }
+
+  deleteBooking(id){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('booking/'+id);
+    return this.http.delete(ep,{headers: headers})
+      .map(res => res.json());
+  }
+  getNewBookingById(id){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('booking/'+id);
+    return this.http.get(ep, {headers: headers})
+      .map(res => res.json());
+  }
+
+  getNewBookingAwb(){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('mix/booking/one');
     return this.http.get(ep, {headers: headers})
       .map(res => res.json());
   }
@@ -198,6 +260,21 @@ export class AuthService {
 
   }
 
+  listDestinations(){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('destination');
+    return this.http.get(ep, {headers: headers})
+      .map(res => res.json());
+  }
+
+  deleteDestination(id){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('destination/'+id);
+    return this.http.delete(ep,{headers: headers})
+      .map(res => res.json());
+  }
 
   addHub(hubs){
     let headers = new Headers();

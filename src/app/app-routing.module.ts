@@ -69,10 +69,13 @@ import { PageLeafletMapComponent }      from './pages/maps/leaflet-map/leaflet-m
 import { PageWidgetsComponent }         from './pages/widgets/widgets.component';
 import { PageCompanyInfoComponent }     from './pages/masters/company-info/company-info.component';
 import { PageCompanyListComponent }     from './pages/masters/company-list/company-list.component';
+import { PageBookAssignComponent }     from './pages/masters/book-assign/book.component';
 import { PageDestinationsComponent }    from './pages/masters/destinations/destinations.component';
 import { PageTrainMasterComponent }     from './pages/masters/train-master/train-master.component';
 import { PageHubMasterComponent }       from './pages/masters/hub-master/hub-master.component';
 import { PageBookingComponent }         from './pages/transaction/booking/booking.component';
+import { PageBookingListComponent }     from './pages/transaction/booking/list/booking-list.component';
+import { PageBookingEditComponent }     from './pages/transaction/booking/edit/booking-edit.component';
 import { RegisterComponent }            from './pages/transaction/register/register.component';
 import { PageAddBundleComponent }       from './pages/transaction/bundle/add/addbundle.component';
 import { PageAwbTrackingComponent }     from './pages/transaction/awbtracking/awbtracking.component';
@@ -136,10 +139,13 @@ const defaultRoutes: Routes = [
   { path: 'leaflet-map', component: PageLeafletMapComponent },
   { path: 'company-info', component: PageCompanyInfoComponent },
   { path: 'company-list', component: PageCompanyListComponent },
+  { path: 'book-assign', component: PageBookAssignComponent },
   { path: 'destinations', component: PageDestinationsComponent },
   { path: 'train-master', component: PageTrainMasterComponent },
   { path: 'hub-master', component: PageHubMasterComponent },
   { path: 'booking', component: PageBookingComponent },
+  { path: 'booking-list', component: PageBookingListComponent },
+  { path: 'booking-edit', component: PageBookingEditComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'addbundle', component: PageAddBundleComponent },
   { path: 'awbtracking', component: PageAwbTrackingComponent },

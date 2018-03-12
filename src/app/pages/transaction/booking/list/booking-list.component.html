@@ -1,0 +1,30 @@
+<card>
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-default">
+        <tr>
+          <th>#</th>
+          <th>AWB</th>
+          <th>Book No</th>
+          <th>Origin</th>
+          <th>Destination</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let booking of res; let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{booking.awb}}</td>
+          <td>{{booking.bookno}}</td>
+          <td>{{booking.origin}}</td>
+          <td>{{booking.destination}}</td>
+          <td class="deletetd" (click)="deleteBooking(booking._id)">Delete</td>
+          <td><a href="#/default-layout/booking-edit/{{booking._id}}">Edit</a></td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+  </div>
+</card>

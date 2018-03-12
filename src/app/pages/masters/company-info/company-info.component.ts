@@ -70,24 +70,7 @@ export class PageCompanyInfoComponent implements OnInit {
     'Puducherry' 
   ];
   
-  favoriteSeason: string = 'Winter';
-
-  seasons: string[] = [
-    'Winter',
-    'Spring',
-    'Summer',
-    'Autumn'
-  ];
-
-  color: string;
-
-  availableColors = [
-    { name: 'Default', color: '' },
-    { name: 'Primary', color: 'primary' },
-    { name: 'Accent', color: 'accent' },
-    { name: 'Warning', color: 'warn' }
-  ];
-
+  
   constructor( 
     private fb: FormBuilder,
     private _sharedService: SharedService, 

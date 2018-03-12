@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CustomValidators } from 'ng2-validation';
-import {AuthService} from '../../../services/auth.service'
+import {AuthService} from '../../../../services/auth.service'
 import {FlashMessagesService} from 'angular2-flash-messages';
-import { SharedService } from '../../../layouts/shared-service';
+import { SharedService } from '../../../../layouts/shared-service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/startWith';
@@ -17,11 +18,12 @@ const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
 
 @Component({
   selector: 'app-booking',
-  templateUrl: './booking.component.html',
-  styleUrls: ['./booking.component.scss']
+  templateUrl: './booking-edit.component.html',
+  styleUrls: ['./booking-edit.component.scss']
 })
-export class PageBookingComponent implements OnInit {
-  pageTitle: string = 'Booking';
+export class PageBookingEditComponent implements OnInit {
+  pageTitle: string = 'Edit Booking';
+  id: string;
   awb: string;
   booking_date: Date;
   bookin_time: String;
@@ -92,12 +94,16 @@ export class PageBookingComponent implements OnInit {
     {value: 'cheque', viewValue: 'Cheque'}
   ];
   constructor( 
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router, 
     private _sharedService: SharedService, 
     private flashMessage:FlashMessagesService,
     private authService:AuthService
      ) {
     this._sharedService.emitChange(this.pageTitle);
+    this.route.params.subscribe(params => {
+      this.id = params['id']; console.log(this.id); });
     this.companyCtrl = new FormControl();
     this.filteredCompanies = this.companyCtrl.valueChanges
       .startWith(null)
@@ -161,42 +167,38 @@ export class PageBookingComponent implements OnInit {
       normal_pcs: [null, Validators.compose([Validators.required])]
       
     });
-
-    this.authService.getbookno().subscribe(data => {
-      this.bookno = data.book_no;
-     // console.log(this.bookno);
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      console.log(params.get("id"));
+  })
+    this.getNewBookingById(this.id)
+     
+  }
+  getNewBookingById(id){
+    this.authService.getNewBookingById(id).subscribe(data => {
+      
+      console.log(data);
         },err => {
           console.log(err);
           return false;
       });
 
-     
-     
-      const awb1 = Date.now();
-      this.awb = 'awb' + (awb1 - 1520000000000);
-      console.log(this.awb);
-  }
-  displayFn(company) {
-    // I want to get the full object and display the name
-    if (!company) return '';
-    return company.company_name;
+
   }
   
-  getValConsignor(val){ this.consignor = val; console.log(this.company); }
   compannyAddress(companyobj){
     this.company = companyobj._id;
     this.address = companyobj.address + ", " + companyobj.city + ", " + companyobj.state + " Ph. " + companyobj.phone;
-    console.log(companyobj);
+   // console.log(companyobj);
   }
   consignorAddress(companyobj){
     this.consignor = companyobj._id;
     this.consignor_address = companyobj.address + ", " + companyobj.city + ", " + companyobj.state + " Ph. " + companyobj.phone;
-    console.log(companyobj);
+   
   }
   consigneeAddress(companyobj){
     this.consignee = companyobj._id;
     this.consignee_address = companyobj.address + ", " + companyobj.city + ", " + companyobj.state + " Ph. " + companyobj.phone;
-    console.log(companyobj);
+    //console.log(companyobj);
   }
   getcompanies(){
     this.authService.listCompanies().subscribe(data => {
@@ -245,7 +247,7 @@ export class PageBookingComponent implements OnInit {
       this.gst = 5/105*this.fixed_val;
       this.invtotal = this.fixed_val;
     }
-    console.log(Number(this.fixed_val));
+   
   }
 
   onBookingSubmit(){
