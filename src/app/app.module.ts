@@ -137,7 +137,6 @@ import { PageWidgetsComponent }             from './pages/widgets/widgets.compon
 import { FooterComponent }                  from './a2-components/footer/footer.component';
 import { AdditionNavbarComponent }          from './a2-components/addition-navbar/addition-navbar.component';
 import { PageCompanyInfoComponent }         from './pages/masters/company-info/company-info.component';
-import { PageCompanyListComponent }         from './pages/masters/company-list/company-list.component';
 import { PageBookAssignComponent }         from './pages/masters/book-assign/book.component';
 import { PageDestinationsComponent }        from './pages/masters/destinations/destinations.component';
 import { PageTrainMasterComponent }         from './pages/masters/train-master/train-master.component';
@@ -285,7 +284,6 @@ import { PageHubOutComponent }              from './pages/transaction/hubout/hub
     FooterComponent,
     AdditionNavbarComponent,
     PageCompanyInfoComponent,
-    PageCompanyListComponent,
     PageBookAssignComponent,
     PageDestinationsComponent,
     PageTrainMasterComponent,

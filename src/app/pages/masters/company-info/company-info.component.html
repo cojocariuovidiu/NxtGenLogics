@@ -1,27 +1,36 @@
 <card title="Create New Company Profile">
     <form [formGroup]="form" (submit)="onCompProfileSubmit()">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <md-input-container class="md-icon-left">
           <md-icon>perm_identity</md-icon>
           <input mdInput name="company_name" [(ngModel)]="company_name" placeholder="Company Name" [formControl]="form.controls['company_name']">
           <small *ngIf="form.controls['company_name'].hasError('required') && form.controls['company_name'].touched" class="form-message text-danger">No space.</small>
         </md-input-container>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <md-input-container class="md-icon-left">
           <md-icon>people_outline</md-icon>
           <input mdInput name="gst_no" [(ngModel)]="gst_no" placeholder="GST Number" value="" [formControl]="form.controls['gst_no']">
         </md-input-container>
       </div>
+      <div class="col-md-3">
+        <md-input-container class="md-icon-left">
+          <md-icon>people_outline</md-icon>
+          <input mdInput [(ngModel)]="adhaar" placeholder="Adhaar" value="" [formControl]="form.controls['adhaar']">
+        </md-input-container>
+      </div>
     
-    <div class="col-md-4">
-    <md-input-container>
-      <textarea mdInput name="address" [(ngModel)]="address" placeholder="Address" [formControl]="form.controls['address']"></textarea>
+    
+    
+  <div class="col-md-3">
+    <md-input-container class="md-icon-left">
+      <md-icon>people_outline</md-icon>
+      <input mdInput [(ngModel)]="rate" placeholder="Rate" value="" [formControl]="form.controls['rate']">
     </md-input-container>
   </div>
-    
-      <div class="col-md-4">
+
+      <div class="col-md-3">
         <md-input-container class="mb-0">
           <input mdInput name="state" [(ngModel)]="state" placeholder="State" [mdAutocomplete]="auto" [formControl]="stateCtrl">
         </md-input-container>
@@ -32,12 +41,12 @@
           </md-option>
         </md-autocomplete>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <md-input-container>
           <input mdInput name="city" [(ngModel)]="city" placeholder="City" value="" [formControl]="form.controls['city']">
         </md-input-container>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <md-input-container>
           <input mdInput name="postcode" [(ngModel)]="postcode" placeholder="Postal Code" maxlength="100" value="" [formControl]="form.controls['postcode']" #characterCountHintExample>
           <md-hint align="end">{{characterCountHintExample.value.length}} / 5</md-hint>
@@ -45,52 +54,81 @@
       </div>
     
     
-        <div class="col-md-4">
+        <div class="col-md-3">
             <md-input-container>
                 <input mdInput name="director" [(ngModel)]="director" placeholder="Director Name" value=""  [formControl]="form.controls['director']">
                 <small *ngIf="form.controls['director'].hasError('required') && form.controls['director'].touched" class="form-message text-danger">No space.</small>
               
               </md-input-container>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <md-input-container>
             <input mdInput name="md" [(ngModel)]="md" placeholder="MD Name" [formControl]="form.controls['md']">
           </md-input-container>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <md-input-container>
                 <input mdInput name="reg_no" [(ngModel)]="reg_no" placeholder="Reg. Number" [formControl]="form.controls['reg_no']">
               </md-input-container>
         </div>
       
       
-        <div class="col-md-4">
+        <div class="col-md-3">
             <md-input-container>
                 <input mdInput name="pan" [(ngModel)]="pan" placeholder="PAN" value="" [formControl]="form.controls['pan']">
               </md-input-container>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <md-input-container>
             <input mdInput name="md_number" [(ngModel)]="md_number" placeholder="MD Contact" [formControl]="form.controls['md_number']">
           </md-input-container>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <md-input-container>
                 <input mdInput name="phone" [(ngModel)]="phone" placeholder="Company Contact Number" value="" [formControl]="form.controls['phone']">
                 <small *ngIf="form.controls['phone'].hasError('required') && form.controls['phone'].touched" class="form-message text-danger">No space.</small>
               
               </md-input-container>
         </div>
-      
-      <div class="col-md-4">
-  
+        <div class="col-md-3">
+        <md-input-container>
+          <textarea mdInput name="address" [(ngModel)]="address" placeholder="Address" [formControl]="form.controls['address']"></textarea>
+        </md-input-container>
+      </div>
+      <div class="col-md-3">
     <md-input-container class="mb-0">
-      <textarea mdInput name="comments" [(ngModel)]="comments" placeholder="Comments" rows="4" [formControl]="form.controls['comments']"></textarea>
+      <textarea mdInput name="comments" [(ngModel)]="comments" placeholder="Comments" rows="2" [formControl]="form.controls['comments']"></textarea>
     </md-input-container>
     </div>
     </div>
     <button md-raised-button color="accent" type="submit" [disabled]="!form.valid">Submit</button>
+    <button md-raised-button color="accent" type="button" (click)="new_reset();" >New</button>
     </form>
   </card>
-  
+  <card>
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="thead-default">
+          <tr>
+            <th>#</th>
+            <th>Company Name</th>
+            <th>City</th>
+            <th></th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let company of res; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{company.company_name}}</td>
+            <td>{{company.city}}</td>
+            <td class="deletetd" (click)="getCompanyById(company._id)">Edit</td>
+            <td class="deletetd" (click)="deleteCompany(company._id)">Delete</td>
+          </tr>
+          </tbody>
+          </table>
+          </div>
+    </div>
+  </card>
   

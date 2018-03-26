@@ -68,7 +68,6 @@ import { PageGoogleMapComponent }       from './pages/maps/google-map/google-map
 import { PageLeafletMapComponent }      from './pages/maps/leaflet-map/leaflet-map.component';
 import { PageWidgetsComponent }         from './pages/widgets/widgets.component';
 import { PageCompanyInfoComponent }     from './pages/masters/company-info/company-info.component';
-import { PageCompanyListComponent }     from './pages/masters/company-list/company-list.component';
 import { PageBookAssignComponent }     from './pages/masters/book-assign/book.component';
 import { PageDestinationsComponent }    from './pages/masters/destinations/destinations.component';
 import { PageTrainMasterComponent }     from './pages/masters/train-master/train-master.component';
@@ -138,7 +137,6 @@ const defaultRoutes: Routes = [
   { path: 'google-map', component: PageGoogleMapComponent },
   { path: 'leaflet-map', component: PageLeafletMapComponent },
   { path: 'company-info', component: PageCompanyInfoComponent },
-  { path: 'company-list', component: PageCompanyListComponent },
   { path: 'book-assign', component: PageBookAssignComponent },
   { path: 'destinations', component: PageDestinationsComponent },
   { path: 'train-master', component: PageTrainMasterComponent },

@@ -100,6 +100,13 @@ export class AuthService {
     return this.http.get(ep, {headers: headers})
       .map(res => res.json());
   }
+  listBookentries(){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('book/bookentry');
+    return this.http.get(ep, {headers: headers})
+      .map(res => res.json());
+  }
 
   getbookno(){
     let headers = new Headers();
@@ -159,6 +166,13 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
     let ep = this.prepEndpoint('company');
+    return this.http.get(ep, {headers: headers})
+      .map(res => res.json());
+  }
+  getCompanyById(id){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('company/'+id);
     return this.http.get(ep, {headers: headers})
       .map(res => res.json());
   }
@@ -239,6 +253,14 @@ export class AuthService {
     headers.append('Content-Type','application/json');
     let ep = this.prepEndpoint('company');
     return this.http.post(ep, comp,{headers: headers})
+      .map(res => res.json());
+  }
+  
+  updateCompany(comp,id){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('company/'+id);
+    return this.http.put(ep, comp,{headers: headers})
       .map(res => res.json());
   }
   

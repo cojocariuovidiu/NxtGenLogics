@@ -1,21 +1,28 @@
 <card title="Assign Book">
     <form [formGroup]="form" (submit)="onBookAssignSubmit()">
     <div class="row">
-      <div class="col-md-4">
+        <div class="col-md-3">
+            <md-input-container class="md-icon-left">
+              <md-icon>perm_identity</md-icon>
+              <input mdInput [(ngModel)]="book_no" placeholder="Book No" [formControl]="form.controls['book_no']">
+              <small *ngIf="form.controls['book_no'].hasError('required') && form.controls['book_no'].touched" class="form-message text-danger">No space.</small>
+            </md-input-container>
+          </div>
+      <div class="col-md-3">
         <md-input-container class="md-icon-left">
           <md-icon>perm_identity</md-icon>
           <input mdInput name="book_no_from" [(ngModel)]="book_no_from" placeholder="Book No From" [formControl]="form.controls['book_no_from']">
           <small *ngIf="form.controls['book_no_from'].hasError('required') && form.controls['book_no_from'].touched" class="form-message text-danger">No space.</small>
         </md-input-container>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <md-input-container class="md-icon-left">
           <md-icon>people_outline</md-icon>
           <input mdInput name="book_no_to" [(ngModel)]="book_no_to" placeholder="Book No to" value="" [formControl]="form.controls['book_no_to']">
         </md-input-container>
       </div>
     
-    <div class="col-md-4">
+    <div class="col-md-3">
     <md-input-container>
       <input mdInput [mdDatepicker]="picker" name="issue_date" [(ngModel)]="issue_date" placeholder="Issue Date" [formControl]="form.controls['issue_date']">
       <button mdSuffix [mdDatepickerToggle]="picker"></button>
@@ -24,7 +31,7 @@
  
   </div>
     
-      <div class="col-md-4">
+      <div class="col-md-3">
         <md-input-container class="mb-0">
           <input mdInput name="issued_to" [(ngModel)]="issued_to" placeholder="Issued to" [mdAutocomplete]="auto" [formControl]="form.controls['issued_to']">
         </md-input-container>

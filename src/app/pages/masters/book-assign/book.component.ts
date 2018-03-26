@@ -15,8 +15,9 @@ import { SharedService } from '../../../layouts/shared-service';
 })
 export class PageBookAssignComponent implements OnInit {
   pageTitle: string = 'Book Assign';
-  book_no_from: Number;
-  book_no_to: Number;
+  book_no: number;
+  book_no_from: number;
+  book_no_to: number;
   issued_to: String;
   issue_date: Date;
   issued_by: String;
@@ -37,6 +38,7 @@ export class PageBookAssignComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
+      book_no: [null, Validators.compose([Validators.required,Validators.minLength(1), Validators.maxLength(11), CustomValidators.digits])],
       book_no_from: [null, Validators.compose([Validators.required,Validators.minLength(1), Validators.maxLength(11), CustomValidators.digits])],
       book_no_to: [null, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(11), CustomValidators.digits])],
       issued_to: [null, Validators.compose([Validators.required])],
@@ -53,14 +55,17 @@ export class PageBookAssignComponent implements OnInit {
           return false;
       });
 
-      this.authService.listBooknos().subscribe(data => {
-        this.booknos = data;
-        console.log(this.booknos);
-          },err => {
-            console.log(err);
-            return false;
-        });
-  
+      this.listBookentries();
+      
+  }
+  listBookentries(){
+  this.authService.listBookentries().subscribe(data => {
+    this.booknos = data;
+    console.log(this.booknos);
+      },err => {
+        console.log(err);
+        return false;
+    });
   }
 
   deleteBookNo(id){
@@ -75,6 +80,7 @@ export class PageBookAssignComponent implements OnInit {
 
   onBookAssignSubmit(){
     const book = {
+      book_no:this.book_no,
       book_no_from: this.book_no_from,
       book_no_to: this.book_no_to,
       issued_to: this.issued_to,
@@ -83,8 +89,9 @@ export class PageBookAssignComponent implements OnInit {
       status: 'open'
     }
     this.authService.assignBook(book).subscribe(data => {
-      if(data.status==201){
+      if(data.success){
         this.flashMessage.show('Book Assign Successfull', {cssClass: 'alert-success', timeout: 3000});
+        this.listBookentries();
        // this.router.navigate(['/login']);
       } else {
         this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});

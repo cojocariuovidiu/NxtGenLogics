@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CustomValidators } from 'ng2-validation';
 import {AuthService} from '../../../services/auth.service'
 import {FlashMessagesService} from 'angular2-flash-messages';
@@ -8,6 +9,8 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
+import * as moment from 'moment';
+
 
 
 //import { Stream } from 'stream';
@@ -66,6 +69,7 @@ export class PageBookingComponent implements OnInit {
   status: String;
   remarks: String;
   delivery_date: Date;
+  id: any;
 
   public form: FormGroup;
   companyCtrl: FormControl;
@@ -92,7 +96,9 @@ export class PageBookingComponent implements OnInit {
     {value: 'cheque', viewValue: 'Cheque'}
   ];
   constructor( 
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router, 
     private _sharedService: SharedService, 
     private flashMessage:FlashMessagesService,
     private authService:AuthService
@@ -118,6 +124,13 @@ export class PageBookingComponent implements OnInit {
     this.filteredDestinations = this.originCtrl.valueChanges
       .startWith(null)
       .map(name => this.filterdestination(name));
+    this.route.queryParams.subscribe((params: Params) => {
+        this.id = params['id'];
+        if(this.id){
+          this.getNewBookingById(this.id);
+        }
+      });
+  
   
   }
   
@@ -176,6 +189,60 @@ export class PageBookingComponent implements OnInit {
       this.awb = 'awb' + (awb1 - 1520000000000);
       console.log(this.awb);
   }
+
+  getNewBookingById(id){
+    this.authService.getNewBookingById(id).subscribe(data => {
+      this.awb = data.awb;
+      this.bookno = data.book_no;
+      this.booking_date = data.booking_date; 
+      this.company = data.company;
+      this.consignor = data.consignor;
+      this.consignee = data.consignee;
+      this.address = data.address;
+      this.origin = data.origin;
+      this.destination = data.destination;
+      this.mode = data.mode;
+      this.normal_pcs = data.normal_pcs;
+      this.length = data.length;
+      this.width = data.width;
+      this.height = data.height;
+      this.actual_wt = data.actual_wt;
+      this.volumetric_wt = data.volumetric_wt;
+      this.paymode = data.paymode;
+      this.inv_no = data.inv_no;
+      this.labour_charge = data.labour_charge;
+      this.document_charge = data.document_charge;
+      this.insurance_charge = data.insurance_charge;
+      this.other_charge = data.other_charge;
+      this.inv_val = data.inv_val;
+      this.fixed_val = data.fixed_val;
+      this.gst = data.gst;
+      this.invtotal = data.invtotal;
+      this.bundled= data.bundled;
+      this.bundleids= data.bundleids;
+      this.status = data.status;
+
+      if(this.company){ this.assignValuestoAutocompleteFields(); }
+      console.log(data);
+        },err => {
+          console.log(err);
+          this.id = null;
+          return false;
+      });
+  }
+  
+  assignValuestoAutocompleteFields(){
+    console.log("dddd");
+    this.company1.forEach(element => {
+      if(this.company==element._id){ this.company_name=element.company_name; }
+      if(this.consignor==element._id){ this.consignor_name=element.company_name; }
+      if(this.consignee==element._id){ this.consignee_name=element.company_name; }
+
+        //console.log(element);
+     
+    });
+  }
+
   displayFn(company) {
     // I want to get the full object and display the name
     if (!company) return '';
@@ -201,14 +268,17 @@ export class PageBookingComponent implements OnInit {
   getcompanies(){
     this.authService.listCompanies().subscribe(data => {
       data.forEach(element => {
+
                this.company1.push(element);
-      });
+               //for edit mode
+              
+        });
     
-    },err => {
+      },err => {
       console.log(err);
       return false;
     
-    });    
+      });    
 
   }
   getdestinations(){
@@ -216,7 +286,7 @@ export class PageBookingComponent implements OnInit {
      // this.destinations = data;
       data.forEach(element => {
         this.destinations.push(element);
-});
+      });
      console.log(this.destinations);
         },err => {
           console.log(err);
@@ -252,7 +322,7 @@ export class PageBookingComponent implements OnInit {
     const booking = {
       awb: this.awb,
       book_no: this.bookno,
-      booking_date: this.booking_date,
+      booking_date:  moment(this.booking_date).toISOString(),
       company: this.company,
       consignor: this.consignor,
       consignee: this.consignee,

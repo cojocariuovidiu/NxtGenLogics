@@ -17,6 +17,8 @@ export class PageCompanyInfoComponent implements OnInit {
   pageTitle: string = 'Company Info';
   company_name: String;
   gst_no: String;
+  adhaar: string;
+  rate: number;
   address: String;
   state: String;
   city: String;
@@ -30,6 +32,8 @@ export class PageCompanyInfoComponent implements OnInit {
   comments: String;
   stateCtrl: FormControl;
   filteredStates: any;
+  res: any;
+  id: any;
   public form: FormGroup;
 
   states = [
@@ -91,9 +95,11 @@ export class PageCompanyInfoComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       company_name: [null, Validators.compose([Validators.required])],
-      phone: [null, Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(13), CustomValidators.digits])],
-      director: [null, Validators.compose([Validators.required])],
+      phone: [null],
+      director: [null],
       gst_no: [null],
+      adhaar: [null],
+      rate: [null],
       address: [null],
       state: [null],
       city: [null],
@@ -105,12 +111,70 @@ export class PageCompanyInfoComponent implements OnInit {
       comments: [null]
     
     });
+
+    this.getCompanyList();
   }
 
+  getCompanyList(){
+    this.authService.listCompanies().subscribe(data => {
+        
+      this.res = data;
+      console.log(this.res);
+    
+  },err => {
+    console.log(err);
+    return false;
+  });
+  }
+
+  getCompanyById(id){
+    this.authService.getCompanyById(id).subscribe(data => {
+        this.company_name = data.company_name;
+      this.id = id;
+      this.gst_no = data.gst_no;
+      this.adhaar = data.adhaar;
+      this.rate = data.rate;
+      this.address = data.address;
+      this.state = data.state;
+      this.city = data.city;
+      this.postcode = data.postcode;
+      this.director = data.director;
+      this.md = data.md;
+      this.reg_no = data.reg_no;
+      this.pan = data.pan;
+      this.md_number = data.md_number;
+      this.phone = data.phone;
+      this.comments = data.comments;
+      console.log(data);
+    
+    },err => {
+      console.log(err);
+      return false;
+    });
+  }
+
+  deleteCompany(id){
+    this.authService.deleteCompany(id).subscribe(data => {
+      this.getCompanyList();
+      
+      console.log(id+" deleted");
+    
+  },err => {
+    console.log(err);
+    return false;
+  });
+  }
+
+  new_reset(){
+    this.id=null;
+    this.form.reset();
+  }
   onCompProfileSubmit(){
     const comp = {
       company_name: this.company_name,
       gst_no: this.gst_no,
+      adhaar: this.adhaar,
+      rate: this.rate,
       address: this.address,
       state: this.state,
       city: this.city,
@@ -123,17 +187,35 @@ export class PageCompanyInfoComponent implements OnInit {
       phone: this.phone,
       comments: this.comments
     }
+    if(this.id){
+      this.authService.updateCompany(comp,this.id).subscribe(data => {
+        if(data.success){
+          this.flashMessage.show('Company Updated', {cssClass: 'alert-success', timeout: 3000});
+          this.getCompanyList();
+          
+         // this.router.navigate(['/login']);
+        } else {
+          this.flashMessage.show(data.message, {cssClass: 'alert-danger', timeout: 3000});
+         // this.router.navigate(['/register']);
+         
+        }
+      });
+    
+    } else {
     this.authService.addCompany(comp).subscribe(data => {
       if(data.success){
-        this.flashMessage.show('Booking Successfull', {cssClass: 'alert-success', timeout: 3000});
+        this.flashMessage.show('Company Created', {cssClass: 'alert-success', timeout: 3000});
+        this.getCompanyList();
+        this.form.reset();
        // this.router.navigate(['/login']);
       } else {
-        this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
+        this.flashMessage.show(data.message, {cssClass: 'alert-danger', timeout: 3000});
        // this.router.navigate(['/register']);
+       
       }
     });
   }
-
- 
+  
+}
 
 }

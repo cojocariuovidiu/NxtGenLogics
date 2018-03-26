@@ -16,7 +16,7 @@
           
           <div class="col-md-2">
             <md-input-container>
-              <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" name="booking_date" [formControl]="form.controls['booking_date']" >
+              <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="booking_date" name="booking_date" [formControl]="form.controls['booking_date']" >
               <button mdSuffix [mdDatepickerToggle]="picker"></button>
               </md-input-container>
             <md-datepicker #picker></md-datepicker>
@@ -42,8 +42,8 @@
                 <input mdInput placeholder="company" [(ngModel)]="company_name" [mdAutocomplete]="auto" [formControl]="companyCtrl">
               </md-input-container>
               <md-autocomplete #auto="mdAutocomplete">
-                <md-option *ngFor="let company of filteredCompanies | async" [value]="company.company_name" (onSelectionChange)="compannyAddress(company)">
-                  {{ company.company_name }}
+                <md-option *ngFor="let company2 of filteredCompanies | async" [value]="company2.company_name" (onSelectionChange)="compannyAddress(company2)">
+                  {{ company2.company_name }}
                 </md-option>
               </md-autocomplete>
         </div>
@@ -53,8 +53,8 @@
               <input mdInput placeholder="Consignor" [(ngModel)]="consignor_name" [mdAutocomplete]="autoconsignor" [formControl]="consignorCtrl">
             </md-input-container>
             <md-autocomplete #autoconsignor="mdAutocomplete">
-              <md-option *ngFor="let company of filteredCompanies | async" [value]="company.company_name" (onSelectionChange)="consignorAddress(company)">
-                {{ company.company_name }}
+              <md-option *ngFor="let company2 of filteredCompanies | async" [value]="company2.company_name" (onSelectionChange)="consignorAddress(company2)">
+                {{ company2.company_name }}
               </md-option>
             </md-autocomplete>
            </div>
@@ -63,8 +63,8 @@
               <input mdInput placeholder="Consignee" [(ngModel)]="consignee_name" [mdAutocomplete]="autoconsignee" [formControl]="consigneeCtrl">
             </md-input-container>
             <md-autocomplete #autoconsignee="mdAutocomplete">
-              <md-option *ngFor="let company of filteredCompanies | async" [value]="company.company_name" (onSelectionChange)="consigneeAddress(company)">
-                {{ company.company_name }}
+              <md-option *ngFor="let company2 of filteredCompanies | async" [value]="company2.company_name" (onSelectionChange)="consigneeAddress(company2)">
+                {{ company2.company_name }}
               </md-option>
             </md-autocomplete>
         </div>

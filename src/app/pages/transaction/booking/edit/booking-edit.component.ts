@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CustomValidators } from 'ng2-validation';
 import {AuthService} from '../../../../services/auth.service'
 import {FlashMessagesService} from 'angular2-flash-messages';
@@ -102,8 +102,12 @@ export class PageBookingEditComponent implements OnInit {
     private authService:AuthService
      ) {
     this._sharedService.emitChange(this.pageTitle);
-    this.route.params.subscribe(params => {
-      this.id = params['id']; console.log(this.id); });
+    this.route.queryParams.subscribe((params: Params) => {
+      this.id = params['id'];
+        console.log(this.id);
+      console.log(params);
+    });
+    
     this.companyCtrl = new FormControl();
     this.filteredCompanies = this.companyCtrl.valueChanges
       .startWith(null)
@@ -167,10 +171,8 @@ export class PageBookingEditComponent implements OnInit {
       normal_pcs: [null, Validators.compose([Validators.required])]
       
     });
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      console.log(params.get("id"));
-  })
-    this.getNewBookingById(this.id)
+   
+    this.getNewBookingById(this.id);
      
   }
   getNewBookingById(id){
