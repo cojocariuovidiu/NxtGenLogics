@@ -10,6 +10,22 @@ module.exports = {
     /**
      * bookingController.list()
      */
+    one: (req, res) => {
+        bookingModel.findOne().exec((err, booking) => {
+                 if (err) {
+                return res.status(500).json({
+                    message: 'Error when getting booking.',
+                    error: err
+                });
+            }
+            if (!booking) {
+                return res.status(404).json({
+                    message: 'No such booking'
+                });
+            }
+            return res.json(booking);
+        });
+    },
     list: (req, res) => {
         bookingModel.find(function (err, bookings) {
             if (err) {
@@ -26,6 +42,7 @@ module.exports = {
      * bookingController.show()
      */
     show: (req, res) => {
+
         let id = req.params.id;
         bookingModel.findOne({_id: id}, (err, booking) => {
             if (err) {
@@ -179,7 +196,8 @@ module.exports = {
         let startDate = req.body.startDate;
         let endDate= req.body.endDate;
         console.log(startDate,endDate);
-        bookingModel.find({booking_date:{$gte: startDate, $lte: endDate }}, (err, bookings) => {
+        if(startDate && endDate !== null){
+             bookingModel.find({booking_date:{$gte: startDate, $lte: endDate }}, (err, bookings) => {
 
             if (err) {
                 return res.status(500).json({
@@ -194,6 +212,10 @@ module.exports = {
             }
             return res.json(bookings);
         });
+        }else{
+            console.log('start and end date is required');
+        }
+       
     },
 
 /**
@@ -219,30 +241,14 @@ module.exports = {
             }
             return res.json(bookings);
         });
-    },
+    }
 
 
 /**
      * bookingController.one()
      */
 
-    one: (req, res) => {
-        
-        bookingModel.findOne().sort({'_id':-1}).exec((err, booking) => {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting booking.',
-                    error: err
-                });
-            }
-            if (!booking) {
-                return res.status(404).json({
-                    message: 'No such booking'
-                });
-            }
-            return res.json(booking);
-        });
-    },
+   
 
    
 };

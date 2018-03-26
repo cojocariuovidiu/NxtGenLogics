@@ -7,6 +7,8 @@ var companySchema = new Schema({
 	'company_name' : String,
 	'reg_no' : String,
 	'gst_no' : String,
+	'adhaar' : String,
+	'rate' : Number,
 	'pan' : String,
 	'city' : String,
 	'state': String,

@@ -47,8 +47,9 @@ module.exports = {
      * companyController.create()
      */
     create: (req, res) => {
-        console.log(req.body);
-        let company = new companyModel({compId : req.body.compId,
+        //console.log(req.body);
+        let company = new companyModel({
+            compId : req.body.compId,
 			base_location : req.body.base_location,
 			company_name : req.body.company_name,
 			pan : req.body.pan,
@@ -56,11 +57,15 @@ module.exports = {
 			city : req.body.city,
             address : req.body.address,
             state : req.body.state,
+            postcode: req.body.postcode,
 			gst_no : req.body.gst_no,
+            adhaar: req.body.adhaar,
+            rate: req.body.rate,
 			director : req.body.director,
 			phone : req.body.phone,
 			md_number : req.body.md_number,
             md : req.body.md,
+            comments: req.body.comments
 
         });
 
@@ -71,7 +76,7 @@ module.exports = {
                     error: err
                 });
             }
-            return res.status(201).json(company);
+            return res.status(201).json({success: true, msg:'Company Created'});
         });
     },
 
@@ -101,10 +106,14 @@ module.exports = {
 			company.address = req.body.address ? req.body.address : company.address;
 			company.state = req.body.state ? req.body.state : company.state;
 			company.gst_no = req.body.gst_no ? req.body.gst_no : company.gst_no;
+            company.postcode = req.body.postcode ? req.body.postcode : company.postcode;
+            company.adhaar = req.body.adhaar ? req.body.adhaar : company.adhaar;
+            company.rate = req.body.rate ? req.body.rate : company.rate;            
 			company.director = req.body.director ? req.body.director : company.director;
             company.phone = req.body.phone ? req.body.phone : company.phone;
             company.md_number = req.body.md_number ? req.body.md_number : company.md_number;
             company.md = req.body.md ? req.body.md : company.md;
+            company.comments = req.body.comments ? req.body.comments : company.comments;
 			
             company.save((err, company)=> {
                 if (err) {
@@ -114,7 +123,7 @@ module.exports = {
                     });
                 }
 
-                return res.json(company);
+                return res.json({success: true, msg:'Company Updated'});
             });
         });
     },

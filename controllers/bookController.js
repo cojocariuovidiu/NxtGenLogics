@@ -1,4 +1,5 @@
 const bookModel = require('../models/bookModel.js');
+const bookentryModel = require('../models/bookentryModel.js');
 
 /**
  * bookingController.js
@@ -47,12 +48,38 @@ module.exports = {
      * bookController.create()
      */
     create: (req, res) => {
+
+        let bookentry = new bookentryModel({
+            book_no:req.body.book_no,
+            book_no_from: req.body.book_no_from,
+            book_no_to: req.body.book_no_to,
+            issued_to : req.body.issued_to,
+            issue_date : req.body.issue_date,
+            issued_by : req.body.issued_by,
+            status : req.body.status
+
+        });
+
+        bookentry.save( (err, bookentry)=> {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error when creating bookenty',
+                    error: err
+                });
+            }
+            
+        });
+
+        //part 2
+
         let nfrom = req.body.book_no_from;
         let nto = req.body.book_no_to;
         let bookarray = new Array();
 
         for(nfrom; nfrom<=nto; nfrom++){
-            bookarray.push({book_no : nfrom,
+            bookarray.push({
+                book_no:req.body.book_no,
+                mbook_no : nfrom,
             issued_to : req.body.issued_to,
             issue_date : req.body.issue_date,
             issued_by : req.body.issued_by,
@@ -65,7 +92,7 @@ module.exports = {
 //console.log(bookarray);
         let book = new bookModel( bookarray);
         
-        console.log(nfrom);
+        //console.log(nfrom);
         
         bookModel.collection.insert(bookarray,(err, book)=> {
 
@@ -75,7 +102,7 @@ module.exports = {
                     error: err
                 });
             }
-            return res.status(201).json(book);
+            return res.status(201).json({success: true, msg:'book Created'});
         });
     
     },
@@ -112,7 +139,7 @@ module.exports = {
                     });
                 }
 
-                return res.json(book);
+                return res.json({success: true, msg:'book updated'});
             });
         });
     },
@@ -129,7 +156,22 @@ module.exports = {
                     error: err
                 });
             }
-            return res.status(204).json();
+            return res.status(204).json({success: true, msg:'bbook deleted'});
+        });
+    },
+
+/**
+     * bookController.bookentrylist()
+     */
+    bookentrylist: (req, res) => {
+        bookentryModel.find({status:{ $ne : "used"}}).sort({"_id":-1}).limit(100).exec(function (err, books) {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error when getting book.',
+                    error: err
+                });
+            }
+            return res.json(books);
         });
     },
 

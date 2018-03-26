@@ -5,6 +5,7 @@ const bookingController = require('../controllers/bookingController.js');
 /*
  * GET
  */
+router.get('/one',bookingController.one);
 router.get('/', bookingController.list);
 
 /*

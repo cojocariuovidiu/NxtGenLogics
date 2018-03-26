@@ -5,6 +5,11 @@ const bookController = require('../controllers/bookController.js');
 /*
  * GET
  */
+router.get('/bookentry/', bookController.bookentrylist);
+
+/*
+ * GET
+ */
 router.get('/', bookController.list);
 
 /*
